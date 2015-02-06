@@ -4,6 +4,7 @@
 [![Gem Version](https://badge.fury.io/rb/sensu-plugins-network.svg)](http://badge.fury.io/rb/sensu-plugins-network)
 [![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-network/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-network)
 [![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-network/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-network)
+[![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-network.svg)](https://gemnasium.com/sensu-plugins/sensu-plugins-network)
 
 ## Functionality
 
@@ -53,8 +54,30 @@ gem install <gem> -P MediumSecurity
 
 You can also download the key from /certs/ within each repository.
 
+#### Rubygems
+
 `gem install sensu-plugins-network`
 
-Add *sensu-plugins-network* to your Gemfile, manifest, cookbook, etc
+#### Bundler
+
+Add *sensu-plugins-network* to your Gemfile and run `bundle install` or `bundle update`
+
+#### Chef
+
+Using the Sensu **sensu_gem** LWRP
+```
+sensu_gem 'sensu-plugins-network' do
+  options('--prerelease')
+  version '0.0.1.alpha.2'
+end
+```
+
+Using the Chef **gem_package** resource
+```
+gem_package 'sensu-plugins-process-checks' do
+  options('--prerelease')
+  version '0.0.1.alpha.2'
+end
+```
 
 ## Notes
