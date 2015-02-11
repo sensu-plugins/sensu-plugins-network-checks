@@ -63,6 +63,10 @@
 # Released under the same terms as Sensu (the MIT license); see LICENSE
 # for details.
 
+<<<<<<< HEAD
+=======
+require 'rubygems' if RUBY_VERSION < '1.9.0'
+>>>>>>> initial commit
 require 'sensu-plugin/metric/cli'
 require 'socket'
 
@@ -87,12 +91,24 @@ class LinuxPacketMetrics < Sensu::Plugin::Metric::CLI::Graphite
       rx_bytes = File.open(iface_path + '/statistics/rx_bytes').read.strip
       tx_errors = File.open(iface_path + '/statistics/tx_errors').read.strip
       rx_errors = File.open(iface_path + '/statistics/rx_errors').read.strip
+<<<<<<< HEAD
+=======
+      begin
+        if_speed = File.open(iface_path + '/speed').read.strip
+      rescue
+        if_speed = 0
+      end
+>>>>>>> initial commit
       output "#{config[:scheme]}.#{iface}.tx_packets", tx_pkts, timestamp
       output "#{config[:scheme]}.#{iface}.rx_packets", rx_pkts, timestamp
       output "#{config[:scheme]}.#{iface}.tx_bytes", tx_bytes, timestamp
       output "#{config[:scheme]}.#{iface}.rx_bytes", rx_bytes, timestamp
       output "#{config[:scheme]}.#{iface}.tx_errors", tx_errors, timestamp
       output "#{config[:scheme]}.#{iface}.rx_errors", rx_errors, timestamp
+<<<<<<< HEAD
+=======
+      output "#{config[:scheme]}.#{iface}.if_speed", if_speed, timestamp
+>>>>>>> initial commit
     end
     ok
   end

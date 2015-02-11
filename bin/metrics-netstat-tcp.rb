@@ -66,6 +66,10 @@
 #
 # rubocop:disable FavorUnlessOverNegatedIf
 
+<<<<<<< HEAD
+=======
+require 'rubygems' if RUBY_VERSION < '1.9.0'
+>>>>>>> initial commit
 require 'sensu-plugin/metric/cli'
 require 'socket'
 

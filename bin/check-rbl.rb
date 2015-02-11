@@ -51,6 +51,10 @@
 # Released under the same terms as Sensu (the MIT license); see LICENSE
 # for details.
 
+<<<<<<< HEAD
+=======
+require 'rubygems' if RUBY_VERSION < '1.9.0'
+>>>>>>> initial commit
 require 'sensu-plugin/check/cli'
 require 'dnsbl-client'
 require 'set'

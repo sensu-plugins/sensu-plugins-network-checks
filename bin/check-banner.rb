@@ -1,5 +1,6 @@
 #! /usr/bin/env ruby
 #
+<<<<<<< HEAD
 #   <script name>
 #
 # DESCRIPTION:
@@ -30,6 +31,8 @@
 
 # !/usr/bin/env ruby
 #
+=======
+>>>>>>> initial commit
 # Check Banner
 # ===
 #
@@ -41,6 +44,10 @@
 # Released under the same terms as Sensu (the MIT license); see LICENSE
 # for details.
 
+<<<<<<< HEAD
+=======
+require 'rubygems' if RUBY_VERSION < '1.9.0'
+>>>>>>> initial commit
 require 'sensu-plugin/check/cli'
 require 'socket'
 require 'timeout'
