@@ -11,6 +11,7 @@ notifications:
   email:
     recipients:
       - mattjones@yieldbot.com
+      - rich.m.chatterton@gmail.com
     on_success: change
     on_failure: always
 
