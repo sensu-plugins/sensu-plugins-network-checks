@@ -16,7 +16,6 @@
 #   gem: socket
 #
 # USAGE:
-#   #YELLOW
 #
 # NOTES:
 #
@@ -26,14 +25,11 @@
 #   for details.
 #
 
-<<<<<<< HEAD
-=======
-require 'rubygems' if RUBY_VERSION < '1.9.0'
->>>>>>> initial commit
 require 'sensu-plugin/metric/cli'
 require 'socket'
 
-class NetIFMetrics < Sensu::Plugin::Metric::CLI::Graphite
+# MetricsNetIF
+class MetricsNetIF < Sensu::Plugin::Metric::CLI::Graphite
   option :scheme,
          description: 'Metric naming scheme, text to prepend to .$parent.$child',
          long: '--scheme SCHEME',

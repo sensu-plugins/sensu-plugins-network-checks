@@ -28,6 +28,7 @@ require 'sensu-plugin/check/cli'
 require 'socket'
 require 'timeout'
 
+# CheckBanner
 class CheckBanner < Sensu::Plugin::Check::CLI
   option :host,
          short: '-H HOSTNAME',

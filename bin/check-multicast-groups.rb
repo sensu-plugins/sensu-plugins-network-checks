@@ -1,41 +1,22 @@
 #! /usr/bin/env ruby
 #
-#   <script name>
+# check-multicast-groups
 #
 # DESCRIPTION:
-#   what is this thing supposed to do, monitor?  How do alerts or
-#   alarms work?
+#   This plugin checks if specific multicast groups are configured
+#   on specific interfaces. The netstat command is required.
 #
 # OUTPUT:
-#   plain text, metric data, etc
+#   plain-text
 #
 # PLATFORMS:
 #   Linux, Windows, BSD, Solaris, etc
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   gem: <?>
+#   gem: set
 #
 # USAGE:
-#   example commands
-#
-# NOTES:
-#   Does it behave differently on specific platforms, specific use cases, etc
-#
-# LICENSE:
-#   <your name>  <your email>
-#   Released under the same terms as Sensu (the MIT license); see LICENSE
-#   for details.
-#
-
-# !/usr/bin/env ruby
-#
-# Check multicast groups
-# ===
-#
-# This plugin checks if specific multicast groups are configured
-# on specific interfaces. The netstat command is required.
-#
 # The configurations can be put in the default sensu config directory
 # and/or out of the sensu directory, as a JSON file. If the config file
 # is not in the sensu directry, -c PATH option must be given.
@@ -54,20 +35,20 @@
 #  CheckMulticastGroups CRITICAL: 1 missing multicast groups:
 #  eth0    224.2.2.4
 #
-# Copyright 2014 Mitsutoshi Aoe <maoe@foldr.in>
+# NOTES:
 #
-# Released under the same terms as Sensu (the MIT license); see LICENSE
-# for details.
+# LICENSE:
+#   Copyright 2014 Mitsutoshi Aoe <maoe@foldr.in>
+#   Released under the same terms as Sensu (the MIT license); see LICENSE
+#   for details.
+#
 
-<<<<<<< HEAD
-=======
-require 'rubygems' if RUBY_VERSION < '1.9.0'
->>>>>>> initial commit
 require 'json'
 require 'sensu-plugin/check/cli'
 require 'sensu-plugin/utils'
 require 'set'
 
+# CheckMulticastGroups
 class CheckMulticastGroups < Sensu::Plugin::Check::CLI
   include Sensu::Plugin::Utils
 
