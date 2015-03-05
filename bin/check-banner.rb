@@ -1,53 +1,29 @@
 #! /usr/bin/env ruby
 #
-<<<<<<< HEAD
-#   <script name>
+#   check-banner
 #
 # DESCRIPTION:
-#   what is this thing supposed to do, monitor?  How do alerts or
-#   alarms work?
+#   Connect to a TCP port, read one line, test it against a pattern.
+#   Useful for SSH, ZooKeeper, etc.
 #
 # OUTPUT:
-#   plain text, metric data, etc
+#   text
 #
 # PLATFORMS:
-#   Linux, Windows, BSD, Solaris, etc
+#   Linux, Windows, BSD
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   gem: <?>
 #
 # USAGE:
-#   example commands
 #
 # NOTES:
-#   Does it behave differently on specific platforms, specific use cases, etc
 #
 # LICENSE:
-#   <your name>  <your email>
+#   Copyright 2012 Sonian, Inc <chefs@sonian.net>
 #   Released under the same terms as Sensu (the MIT license); see LICENSE
 #   for details.
 #
-
-# !/usr/bin/env ruby
-#
-=======
->>>>>>> initial commit
-# Check Banner
-# ===
-#
-# Connect to a TCP port, read one line, test it against a pattern.
-# Useful for SSH, ZooKeeper, etc.
-#
-# Copyright 2012 Sonian, Inc <chefs@sonian.net>
-#
-# Released under the same terms as Sensu (the MIT license); see LICENSE
-# for details.
-
-<<<<<<< HEAD
-=======
-require 'rubygems' if RUBY_VERSION < '1.9.0'
->>>>>>> initial commit
 require 'sensu-plugin/check/cli'
 require 'socket'
 require 'timeout'
