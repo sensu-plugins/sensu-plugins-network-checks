@@ -1,13 +1,12 @@
 #! /usr/bin/env ruby
 #
-#   <script name>
+# check-netstat-tcp
 #
 # DESCRIPTION:
-#   what is this thing supposed to do, monitor?  How do alerts or
-#   alarms work?
+#   Alert based on thresholds of discrete TCP socket states reported by netstat
 #
 # OUTPUT:
-#   plain text, metric data, etc
+#   plain-text
 #
 # PLATFORMS:
 #   Linux, Windows, BSD, Solaris, etc
@@ -17,49 +16,23 @@
 #   gem: <?>
 #
 # USAGE:
-#   example commands
+#   $ ./check-netstat-tcp.rb --states ESTABLISHED,CLOSE_WAIT --warning 10,3 --critical 100,30
+#   CheckNetstatTCP: Warn:ESTABLISHED=18 OK:CLOSE_WAIT=0
+#   $ echo $?
+#   1
+#   $
 #
-# NOTES:
-#   Does it behave differently on specific platforms, specific use cases, etc
-#
-# LICENSE:
-#   <your name>  <your email>
-#   Released under the same terms as Sensu (the MIT license); see LICENSE
-#   for details.
-#
-
-# !/usr/bin/env ruby
-#
-# Check thresholds for TCP socket state metrics
-# ===
-#
-# Alert based on thresholds of discrete TCP socket states reported by netstat
-#
-# Example
-# -------
-#
-# $ ./check-netstat-tcp.rb --states ESTABLISHED,CLOSE_WAIT --warning 10,3 --critical 100,30
-# CheckNetstatTCP: Warn:ESTABLISHED=18 OK:CLOSE_WAIT=0
-# $ echo $?
-# 1
-# $
-#
-# Acknowledgements
-# ----------------
+# ACKNOWLEDGEMENTS:
 # - Thanks to metric-netstat-tcp.rb!
 #   https://github.com/sensu/sensu-community-plugins
 #   - Code for parsing Linux /proc/net/tcp from Anthony Goddard's ruby-netstat:
 #     https://github.com/agoddard/ruby-netstat
 #
-# Released under the same terms as Sensu (the MIT license); see LICENSE
-# for details.
+# LICENSE:
+#   Released under the same terms as Sensu (the MIT license); see LICENSE
+#   for details.
 #
-# rubocop:disable FavorUnlessOverNegatedIf
 
-<<<<<<< HEAD
-=======
-require 'rubygems' if RUBY_VERSION < '1.9.0'
->>>>>>> initial commit
 require 'sensu-plugin/check/cli'
 require 'socket'
 
@@ -79,6 +52,7 @@ TCP_STATES = {
   '0B' => 'CLOSING'
 }
 
+# CheckNetstatTCP
 class CheckNetstatTCP < Sensu::Plugin::Check::CLI
   option :states,
          description: 'Comma delimited list of states to check',

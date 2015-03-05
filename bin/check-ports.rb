@@ -35,6 +35,7 @@ require 'open3'
 require 'sensu-plugin/check/cli'
 require 'json'
 
+# CheckPorts
 class CheckPorts < Sensu::Plugin::Check::CLI
   option :host,
          description: 'Resolving name or IP address of target host',

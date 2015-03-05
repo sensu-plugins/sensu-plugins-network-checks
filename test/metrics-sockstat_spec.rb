@@ -30,10 +30,10 @@ RSpec.configure do |c|
   c.before { allow($stderr).to receive(:puts) }
 end
 
-describe Sockstat, 'run' do
+describe MetricsSockstat, 'run' do
 
   it 'should successfully output socket metrics for the total number of sockets and any other types that are present' do
-    sockstat = Sockstat.new
+    sockstat = MetricsSockstat.new
     allow(sockstat).to receive(:read_sockstat).and_return("sockets: used 10\nFOO: bar 5 baz 4")
     allow(sockstat).to receive(:output)
     expect(sockstat).to receive(:output).with(match('total_used 10'))

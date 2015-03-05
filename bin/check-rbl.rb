@@ -1,64 +1,38 @@
 #! /usr/bin/env ruby
 #
-#   <script name>
+#  check-rbl
 #
 # DESCRIPTION:
-#   what is this thing supposed to do, monitor?  How do alerts or
-#   alarms work?
+#   Checks if a ip is blacklisted in the common dns blacklists.
+#   Optionally, a list of DNS blacklists you do not which to check against
+#   can be specified.
 #
 # OUTPUT:
-#   plain text, metric data, etc
+#   plain text
 #
 # PLATFORMS:
 #   Linux, Windows, BSD, Solaris, etc
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   gem: <?>
+#   gem: dnsbl-client
 #
 # USAGE:
-#   example commands
 #
 # NOTES:
-#   Does it behave differently on specific platforms, specific use cases, etc
+#   A list of DNS blacklists to not be checked can be passed with -I as a
+#   comma-separated list.
 #
 # LICENSE:
-#   <your name>  <your email>
+#   Copyright 2012 Sarguru Nathan  <sarguru90@gmail.com>
 #   Released under the same terms as Sensu (the MIT license); see LICENSE
 #   for details.
-# s
 
-# !/usr/bin/env ruby
-#
-# RblCheck
-# ===
-#
-# Checks if a ip is blacklisted in the common dns blacklists. You can
-# add a list
-#
-# Required gems:  dnsbl-client
-#
-# of dnsbls which you donot wish to check against by option -I followed
-# by Comma Separated
-# value (string) of the blnames. Also you can set certain important
-# blacklists as critical by -C option in a similar way.
-#
-# USAGE:
-#   check-rbl.rb -i 8.8.8.8 -C SORBS -I UCEPROTECT3
-#
-# Copyright 2012 Sarguru Nathan  <sarguru90@gmail.com>
-#
-# Released under the same terms as Sensu (the MIT license); see LICENSE
-# for details.
-
-<<<<<<< HEAD
-=======
-require 'rubygems' if RUBY_VERSION < '1.9.0'
->>>>>>> initial commit
 require 'sensu-plugin/check/cli'
 require 'dnsbl-client'
 require 'set'
 
+# RblCheck
 class RblCheck < Sensu::Plugin::Check::CLI
   option :ip,
          short: '-i IPADDRESS',

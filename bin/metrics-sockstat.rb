@@ -6,7 +6,7 @@
 #   This metric check parses /proc/net/sockstat and outputs all fields as metrics
 #
 # OUTPUT:
-#   graphite
+#   graphite metric data
 #
 # PLATFORMS:
 #   Linux
@@ -19,7 +19,7 @@
 #
 # NOTES:
 #   It outputs the value in the first line ("sockets used") as SCHEME.total_used.
-#   All other fields are output as SCHEME.type.field, i.e., SCHEME.TCP.inuse, SCHEME.UDP.mem 
+#   All other fields are output as SCHEME.type.field, i.e., SCHEME.TCP.inuse, SCHEME.UDP.mem
 #
 # LICENSE:
 #   Copyright 2015 Contegix, LLC.
@@ -27,8 +27,8 @@
 #
 require 'sensu-plugin/metric/cli'
 
-# Sockstat
-class Sockstat < Sensu::Plugin::Metric::CLI::Graphite
+# MetricsSockstat
+class MetricsSockstat < Sensu::Plugin::Metric::CLI::Graphite
   option :scheme,
          description: 'Metric naming scheme, text to prepend to $protocol.$field',
          long: '--scheme SCHEME',
