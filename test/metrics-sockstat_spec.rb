@@ -21,7 +21,6 @@
 #   Copyright 2015 Contegix, LLC.
 #   Released under the same terms as Sensu (the MIT license); see LICENSE for details.
 #
-require_relative './plugin_stub.rb'
 require_relative './spec_helper.rb'
 require_relative '../bin/metrics-sockstat.rb'
 
@@ -36,10 +35,11 @@ describe MetricsSockstat, 'run' do
     sockstat = MetricsSockstat.new
     allow(sockstat).to receive(:read_sockstat).and_return("sockets: used 10\nFOO: bar 5 baz 4")
     allow(sockstat).to receive(:output)
+    allow(sockstat).to receive(:ok)
     expect(sockstat).to receive(:output).with(match('total_used 10'))
     expect(sockstat).to receive(:output).with(match('FOO.bar 5'))
     expect(sockstat).to receive(:output).with(match('FOO.baz 4'))
-    expect(-> { sockstat.run }).to raise_error SystemExit
+    sockstat.run
   end
 
 end
