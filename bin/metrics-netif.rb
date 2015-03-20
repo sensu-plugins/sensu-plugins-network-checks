@@ -16,6 +16,7 @@
 #   gem: socket
 #
 # USAGE:
+#   #YELLOW
 #
 # NOTES:
 #
@@ -28,8 +29,10 @@
 require 'sensu-plugin/metric/cli'
 require 'socket'
 
-# MetricsNetIF
-class MetricsNetIF < Sensu::Plugin::Metric::CLI::Graphite
+#
+# Netif Metrics
+#
+class NetIFMetrics < Sensu::Plugin::Metric::CLI::Graphite
   option :scheme,
          description: 'Metric naming scheme, text to prepend to .$parent.$child',
          long: '--scheme SCHEME',

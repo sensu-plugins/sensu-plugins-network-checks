@@ -1,17 +1,16 @@
 #! /usr/bin/env ruby
 #
-#  check-rbl
+#   check-rbl
 #
 # DESCRIPTION:
-#   Checks if a ip is blacklisted in the common dns blacklists.
-#   Optionally, a list of DNS blacklists you do not which to check against
-#   can be specified.
+#   Checks if a ip is blacklisted in the common dns blacklists. You can
+#   add a list
 #
 # OUTPUT:
 #   plain text
 #
 # PLATFORMS:
-#   Linux, Windows, BSD, Solaris, etc
+#   Linux
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
@@ -20,19 +19,22 @@
 # USAGE:
 #
 # NOTES:
-#   A list of DNS blacklists to not be checked can be passed with -I as a
-#   comma-separated list.
+#  A list of DNS blacklists to not be checked can be passed with -I as a
+#  comma-separated list.
 #
 # LICENSE:
 #   Copyright 2012 Sarguru Nathan  <sarguru90@gmail.com>
 #   Released under the same terms as Sensu (the MIT license); see LICENSE
 #   for details.
+#
 
 require 'sensu-plugin/check/cli'
-require 'dnsbl/client'
+require 'dnsbl-client'
 require 'set'
 
-# RblCheck
+#
+# Rbl Check
+#
 class RblCheck < Sensu::Plugin::Check::CLI
   option :ip,
          short: '-i IPADDRESS',

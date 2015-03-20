@@ -1,15 +1,15 @@
 #! /usr/bin/env ruby
 #
-# check-netstat-tcp
+#   check-netstat-tcp
 #
 # DESCRIPTION:
 #   Alert based on thresholds of discrete TCP socket states reported by netstat
 #
 # OUTPUT:
-#   plain-text
+#   plain text
 #
 # PLATFORMS:
-#   Linux, Windows, BSD, Solaris, etc
+#   Linux
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
@@ -17,16 +17,12 @@
 #
 # USAGE:
 #   $ ./check-netstat-tcp.rb --states ESTABLISHED,CLOSE_WAIT --warning 10,3 --critical 100,30
-#   CheckNetstatTCP: Warn:ESTABLISHED=18 OK:CLOSE_WAIT=0
-#   $ echo $?
-#   1
-#   $
 #
-# ACKNOWLEDGEMENTS:
-# - Thanks to metric-netstat-tcp.rb!
+# NOTES:
+#   - Thanks to metric-netstat-tcp.rb!
 #   https://github.com/sensu/sensu-community-plugins
 #   - Code for parsing Linux /proc/net/tcp from Anthony Goddard's ruby-netstat:
-#     https://github.com/agoddard/ruby-netstat
+#   https://github.com/agoddard/ruby-netstat
 #
 # LICENSE:
 #   Released under the same terms as Sensu (the MIT license); see LICENSE
@@ -52,7 +48,9 @@ TCP_STATES = {
   '0B' => 'CLOSING'
 }
 
-# CheckNetstatTCP
+#
+# Check Netstat TCP
+#
 class CheckNetstatTCP < Sensu::Plugin::Check::CLI
   option :states,
          description: 'Comma delimited list of states to check',

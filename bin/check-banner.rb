@@ -5,15 +5,16 @@
 # DESCRIPTION:
 #   Connect to a TCP port, read one line, test it against a pattern.
 #   Useful for SSH, ZooKeeper, etc.
-#
+
 # OUTPUT:
-#   text
+#   plain text
 #
 # PLATFORMS:
-#   Linux, Windows, BSD
+#   Linux
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
+#   gem: timeout
 #
 # USAGE:
 #
@@ -24,11 +25,14 @@
 #   Released under the same terms as Sensu (the MIT license); see LICENSE
 #   for details.
 #
+
 require 'sensu-plugin/check/cli'
 require 'socket'
 require 'timeout'
 
-# CheckBanner
+#
+# Check Banner
+#
 class CheckBanner < Sensu::Plugin::Check::CLI
   option :host,
          short: '-H HOSTNAME',

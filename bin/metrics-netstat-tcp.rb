@@ -3,10 +3,8 @@
 #   metrics-netstat-tcp
 #
 # DESCRIPTION:
-#   TCP socket state metrics
-#
 #   Fetch metrics on TCP socket states from netstat. This is particularly useful
-#   on high-traffic web or proxy servers with large numbers of short-lived TCP
+#    on high-traffic web or proxy servers with large numbers of short-lived TCP
 #   connections coming and going.
 #
 # OUTPUT:
@@ -17,27 +15,25 @@
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
+#   gem: <?>
 #
 # USAGE:
 #   $ ./metrics-netstat-tcp.rb --scheme servers.hostname
-#    servers.hostname.UNKNOWN      0     1350496466
-#    servers.hostname.ESTABLISHED  235   1350496466
-#    servers.hostname.SYN_SENT     0     1350496466
-#    servers.hostname.SYN_RECV     1     1350496466
-#    servers.hostname.FIN_WAIT1    0     1350496466
-#    servers.hostname.FIN_WAIT2    53    1350496466
-#    servers.hostname.TIME_WAIT    10640 1350496466
-#    servers.hostname.CLOSE        0     1350496466
-#    servers.hostname.CLOSE_WAIT   7     1350496466
-#    servers.hostname.LAST_ACK     1     1350496466
-#    servers.hostname.LISTEN       16    1350496466
-#    servers.hostname.CLOSING      0     1350496466
+#   servers.hostname.UNKNOWN      0     1350496466
+#   servers.hostname.ESTABLISHED  235   1350496466
+#   servers.hostname.SYN_SENT     0     1350496466
+#   servers.hostname.SYN_RECV     1     1350496466
+#   servers.hostname.FIN_WAIT1    0     1350496466
+#   servers.hostname.FIN_WAIT2    53    1350496466
+#   servers.hostname.TIME_WAIT    10640 1350496466
+#   servers.hostname.CLOSE        0     1350496466
+#   servers.hostname.CLOSE_WAIT   7     1350496466
+#   servers.hostname.LAST_ACK     1     1350496466
+#   servers.hostname.LISTEN       16    1350496466
+#   servers.hostname.CLOSING      0     1350496466
 #
 # NOTES:
-#
-# ACKNOWLEDGEMENTS:
-# ----------------
-# - Code for parsing Linux /proc/net/tcp from Anthony Goddard's ruby-netstat:
+#   - Code for parsing Linux /proc/net/tcp from Anthony Goddard's ruby-netstat:
 #   https://github.com/agoddard/ruby-netstat
 #
 # LICENSE:
@@ -65,8 +61,10 @@ TCP_STATES = {
   '0B' => 'CLOSING'
 }
 
-# MetricsNetstatTCP
-class MetricsNetstatTCP < Sensu::Plugin::Metric::CLI::Graphite
+#
+# Netstat TCP Metrics
+#
+class NetstatTCPMetrics < Sensu::Plugin::Metric::CLI::Graphite
   option :scheme,
          description: 'Metric naming scheme, text to prepend to metric',
          short: '-s SCHEME',

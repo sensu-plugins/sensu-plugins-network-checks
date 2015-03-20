@@ -1,44 +1,34 @@
 #! /usr/bin/env ruby
 #
-# check-multicast-groups
+#   check-multicasr-groups
 #
 # DESCRIPTION:
 #   This plugin checks if specific multicast groups are configured
 #   on specific interfaces. The netstat command is required.
 #
+#   The configurations can be put in the default sensu config directory
+#   and/or out of the sensu directory, as a JSON file. If the config file
+#   is not in the sensu directry, -c PATH option must be given.
+#
 # OUTPUT:
-#   plain-text
+#   plain text
 #
 # PLATFORMS:
-#   Linux, Windows, BSD, Solaris, etc
+#   Linux
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
+#   gem: json
 #   gem: set
 #
 # USAGE:
-# The configurations can be put in the default sensu config directory
-# and/or out of the sensu directory, as a JSON file. If the config file
-# is not in the sensu directry, -c PATH option must be given.
-#
-# Example config:
-#
-#  {
-#    "check-multicast-groups": [
-#      ["eth0", "224.2.2.4"]
-#    ]
-#  }
-#
-# Example output:
-#
-#  $ ./plugins/network/check-multicast-groups.rb -c ./plugins/network/check-multicast-groups.json
-#  CheckMulticastGroups CRITICAL: 1 missing multicast groups:
-#  eth0    224.2.2.4
+#   example commands
 #
 # NOTES:
+#   Does it behave differently on specific platforms, specific use cases, etc
 #
 # LICENSE:
-#   Copyright 2014 Mitsutoshi Aoe <maoe@foldr.in>
+# Copyright 2014 Mitsutoshi Aoe <maoe@foldr.in>
 #   Released under the same terms as Sensu (the MIT license); see LICENSE
 #   for details.
 #
@@ -48,7 +38,9 @@ require 'sensu-plugin/check/cli'
 require 'sensu-plugin/utils'
 require 'set'
 
-# CheckMulticastGroups
+#
+# Check Multicast Groups
+#
 class CheckMulticastGroups < Sensu::Plugin::Check::CLI
   include Sensu::Plugin::Utils
 
