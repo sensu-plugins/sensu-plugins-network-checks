@@ -35,7 +35,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'timeout'
   s.add_runtime_dependency 'json'
 
-
   s.add_development_dependency 'codeclimate-test-reporter' '~> 0'
   s.add_development_dependency 'rubocop',       '0.17.0'
   s.add_development_dependency 'rspec',         '~> 3.1'
