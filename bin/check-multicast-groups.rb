@@ -50,7 +50,7 @@ class CheckMulticastGroups < Sensu::Plugin::Check::CLI
          required: true,
          description: 'Path to a config file'
 
-  def run
+  def run  # rubocop:disable all
     targets = settings['check-multicast-groups'] ||= []
     extras = load_config(config[:config])['check-multicast-groups'] || []
     targets.deep_merge(extras)

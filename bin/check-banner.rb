@@ -64,7 +64,7 @@ class CheckBanner < Sensu::Plugin::Check::CLI
          proc: proc(&:to_i),
          default: 30
 
-  def acquire_banner
+  def acquire_banner # rubocop:disable all
     timeout(config[:timeout]) do
       sock = TCPSocket.new(config[:host], config[:port])
       sock.puts config[:write] if config[:write]

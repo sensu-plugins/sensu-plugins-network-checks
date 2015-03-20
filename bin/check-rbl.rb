@@ -53,7 +53,7 @@ class RblCheck < Sensu::Plugin::Check::CLI
          description: 'Comma Separated String of critical blacklists from default list',
          default: 'null'
 
-  def run
+  def run # rubocop:disable all
     c = DNSBL::Client.new
 
     if config[:ip]
@@ -78,7 +78,6 @@ class RblCheck < Sensu::Plugin::Check::CLI
 
     # #YELLOW
     dnsbl_ret.each do |dnsbl_result| # rubocop:disable Style/Next
-
       if dnsbl_result.meaning =~ /spam/i || dnsbl_result.meaning =~ /blacklist/i
         unless ignored_bls_set.member?(dnsbl_result.dnsbl)
           msg_string =  "#{msg_string} #{dnsbl_result.dnsbl}"
@@ -86,7 +85,6 @@ class RblCheck < Sensu::Plugin::Check::CLI
 
         criticality += 1 if critical_bls_set.member?(dnsbl_result.dnsbl)
       end
-
     end
 
     # YELLOW

@@ -44,7 +44,7 @@ class InterfaceGraphite < Sensu::Plugin::Metric::CLI::Graphite
          long: '--exclude-interface',
          proc: proc { |a| a.split(',') }
 
-  def run
+  def run # rubocop:disable all
     # Metrics borrowed from hoardd: https://github.com/coredump/hoardd
 
     metrics = %w(rxBytes

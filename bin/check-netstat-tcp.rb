@@ -79,7 +79,7 @@ class CheckNetstatTCP < Sensu::Plugin::Check::CLI
          long: '--port PORT',
          proc: proc(&:to_i)
 
-  def netstat(protocols = ['tcp'])
+  def netstat(protocols = ['tcp'])  # rubocop:disable all
     state_counts = Hash.new(0)
     TCP_STATES.each_pair { |_hex, name| state_counts[name] = 0 }
 
@@ -103,7 +103,7 @@ class CheckNetstatTCP < Sensu::Plugin::Check::CLI
     state_counts
   end
 
-  def run
+  def run  # rubocop:disable all
     state_counts = netstat(%w(tcp tcp6))
     is_critical = false
     is_warning = false

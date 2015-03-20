@@ -77,7 +77,7 @@ class NetstatTCPMetrics < Sensu::Plugin::Metric::CLI::Graphite
          long: '--port PORT',
          proc: proc(&:to_i)
 
-  def netstat(protocol = 'tcp')
+  def netstat(protocol = 'tcp') # rubocop:disable all
     state_counts = Hash.new(0)
     TCP_STATES.each_pair { |_hex, name| state_counts[name] = 0 }
 
