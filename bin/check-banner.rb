@@ -64,8 +64,7 @@ class CheckBanner < Sensu::Plugin::Check::CLI
   option :pattern,
          short: '-q PAT',
          long: '--pattern PAT',
-         description: 'Pattern to search for',
-         default: 'OpenSSH'
+         description: 'Pattern to search for'
 
   option :timeout,
          short: '-t SECS',
@@ -106,7 +105,6 @@ class CheckBanner < Sensu::Plugin::Check::CLI
       else
         banner = sock.gets(config[:read_till])
       end
-      return banner
     end
   rescue Errno::ECONNREFUSED
     critical "Connection refused by #{host}:#{config[:port]}"
@@ -118,19 +116,42 @@ class CheckBanner < Sensu::Plugin::Check::CLI
     critical 'Connection closed unexpectedly'
   end
 
+  def acquire_no_banner(host)
+    timeout(config[:timeout]) do
+      sock = TCPSocket.new(host, config[:port])
+    end
+    rescue Errno::ECONNREFUSED
+      critical "Connection refused by #{host}:#{config[:port]}"
+    rescue Timeout::Error
+      critical 'Connection or read timed out'
+    rescue Errno::EHOSTUNREACH
+      critical 'Check failed to run: No route to host'
+    rescue EOFError
+      critical 'Connection closed unexpectedly'
+  end
+
   def run
     hosts = config[:hosts].split(',')
     okarray = []
     hosts.each do |host|
-      banner = acquire_banner host
-      okarray << 'ok' if banner =~ /#{config[:pattern]}/
-    end
-    if okarray.size == config[:count_match]
-      ok "pattern #{config[:pattern]} matched" unless config[:ok_message]
-      ok config[:ok_message]
-    else
-      critical "pattern #{config[:pattern]} does not match" unless config[:crit_message]
-      critical config[:crit_message]
+      case config[:pattern]
+      when nil
+        banner = acquire_no_banner host
+        okarray << 'ok' if banner
+      else
+        banner = acquire_banner host
+        okarray << 'ok' if banner =~ /#{config[:pattern]}/
+      end
+      if okarray.size == config[:count_match] and config[:pattern] != nil
+        ok "pattern #{config[:pattern]} matched" unless config[:ok_message]
+        ok config[:ok_message]
+      elsif okarray.size == config[:count_match] and config[:pattern].nil?
+        ok "port #{config[:port]} open" unless config[:ok_message]
+        ok config[:ok_message]
+      else
+        critical "port count or pattern #{config[:pattern]} does not match" unless config[:crit_message]
+        critical config[:crit_message]
+      end
     end
   end
 end
