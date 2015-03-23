@@ -10,3 +10,7 @@
 #### 0.0.1.alpha.3
 
 * additional functionality to check-banner #6
+
+#### 0.0.1.alpha.4
+
+* added check-mtu functionality #7
