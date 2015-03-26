@@ -18,3 +18,7 @@
 #### 0.0.1.alpha.5
 
 * updated check-banner to allow checking for no banner
+
+#### 0.0.1.alpha.6
+
+* added check-whois-domain-expiration #7
