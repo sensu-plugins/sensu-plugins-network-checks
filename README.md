@@ -14,7 +14,7 @@
  * bin/check-ping
  * bin/check-ports
  * bin/check-rbl
- * bin/check-whois
+ * bin/check-whois-domain-expiration
  * bin/metrics-interface
  * bin/metrics-net
  * bin/metrics-netif

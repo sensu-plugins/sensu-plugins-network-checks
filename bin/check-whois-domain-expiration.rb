@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 #
-#   check-whois
+#   check-whois-domain-expiration
 #
 # DESCRIPTION:
 #   This plugin checks domain expiration dates using the 'whois' gem.
@@ -16,8 +16,8 @@
 #   gem: whois
 #
 # USAGE:
-#   $ ./check-whois.rb -d mijit.com
-#   WhoisCheck OK: mijit.com expires on 02-07-2016 (325 days away)
+#   $ ./check-whois-domain-expiration.rb -d mijit.com
+#   WhoisDomainExpirationCheck OK: mijit.com expires on 02-07-2016 (325 days away)
 #
 # LICENSE:
 #   Copyright 2015 michael j talarczyk <mjt@mijit.com> and contributors.
@@ -27,7 +27,10 @@
 require 'sensu-plugin/check/cli'
 require 'whois'
 
-class WhoisCheck < Sensu::Plugin::Check::CLI
+#
+# Check Whois domain expiration
+#
+class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
   option :domain,
          short: '-d DOMAIN',
          long: '--domain DOMAIN',
