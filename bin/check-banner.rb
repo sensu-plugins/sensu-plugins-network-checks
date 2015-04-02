@@ -101,9 +101,9 @@ class CheckBanner < Sensu::Plugin::Check::CLI
       sock = TCPSocket.new(host, config[:port])
       sock.puts config[:write] if config[:write]
       if config[:read_till] == 'EOF'
-        banner = sock.gets(nil)
+        sock.gets(nil)
       else
-        banner = sock.gets(config[:read_till])
+        sock.gets(config[:read_till])
       end
     end
   rescue Errno::ECONNREFUSED
@@ -118,7 +118,7 @@ class CheckBanner < Sensu::Plugin::Check::CLI
 
   def acquire_no_banner(host)
     timeout(config[:timeout]) do
-      sock = TCPSocket.new(host, config[:port])
+      TCPSocket.new(host, config[:port])
     end
     rescue Errno::ECONNREFUSED
       critical "Connection refused by #{host}:#{config[:port]}"
@@ -130,7 +130,7 @@ class CheckBanner < Sensu::Plugin::Check::CLI
       critical 'Connection closed unexpectedly'
   end
 
-  def run
+  def run # rubocop:disable all
     hosts = config[:hosts].split(',')
     okarray = []
     hosts.each do |host|
@@ -142,10 +142,10 @@ class CheckBanner < Sensu::Plugin::Check::CLI
         banner = acquire_banner host
         okarray << 'ok' if banner =~ /#{config[:pattern]}/
       end
-      if okarray.size == config[:count_match] and config[:pattern] != nil
+      if okarray.size == config[:count_match] && !config[:pattern].nil?
         ok "pattern #{config[:pattern]} matched" unless config[:ok_message]
         ok config[:ok_message]
-      elsif okarray.size == config[:count_match] and config[:pattern].nil?
+      elsif okarray.size == config[:count_match] && config[:pattern].nil?
         ok "port #{config[:port]} open" unless config[:ok_message]
         ok config[:ok_message]
       else
