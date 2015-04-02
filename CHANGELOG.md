@@ -22,3 +22,10 @@
 #### 0.0.1.alpha.6
 
 * added check-whois-domain-expiration #7
+
+#### 0.0.1.alpha.7
+
+* add gem metadata
+* add chef provisioner to Vagranrtfile
+* fix ruobcop issues
+* pin all dependencies
