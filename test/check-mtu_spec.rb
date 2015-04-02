@@ -30,7 +30,6 @@ require_relative '../bin/check-mtu'
 require_relative './spec_helper.rb'
 
 describe CheckMTU  do
-
   let(:checker) { described_class.new }
   let(:checker_9000) { described_class.new }
   let(:checker_no_file) { described_class.new }
