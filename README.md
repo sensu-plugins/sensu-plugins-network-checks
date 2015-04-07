@@ -57,7 +57,7 @@ Using the Sensu **sensu_gem** LWRP
 ```
 sensu_gem 'sensu-plugins-network-checks' do
   options('--prerelease')
-  version '0.0.1.alpha.2'
+  version '0.0.1.alpha.1'
 end
 ```
 
@@ -65,7 +65,7 @@ Using the Chef **gem_package** resource
 ```
 gem_package 'sensu-plugins-network-checks' do
   options('--prerelease')
-  version '0.0.1.alpha.2'
+  version '0.0.1.alpha.1'
 end
 ```
 

@@ -26,6 +26,6 @@
 #### 0.0.1.alpha.7
 
 * add gem metadata
-* add chef provisioner to Vagranrtfile
+* add chef provisioner to Vagrantfile
 * fix ruobcop issues
 * pin all dependencies
