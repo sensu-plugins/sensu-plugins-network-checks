@@ -1,27 +1,14 @@
-#### 0.0.1.alpha.1
+#Change Log
+This project adheres to [Semantic Versioning](http://semver.org/).
 
-* initial release, same as community repo
+This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
-#### 0.0.1.alpha.2
+## Unreleased][unreleased]
 
-* all tests pass
-* initial gem release
+## 0.0.1 - 2015-04-29
 
-#### 0.0.1.alpha.3
-
-* additional functionality to check-banner #6
-
-#### 0.0.1.alpha.4
-
-* added check-mtu functionality #7
-
-#### 0.0.1.alpha.5
-
-* updated check-banner to allow checking for no banner
-
-#### 0.0.1.alpha.6
-
-* added check-whois-domain-expiration #7
+### Added
+- initial release
 
 #### 0.0.1.alpha.7
 
@@ -29,3 +16,28 @@
 * add chef provisioner to Vagrantfile
 * fix ruobcop issues
 * pin all dependencies
+
+#### 0.0.1.alpha.6
+
+* added check-whois-domain-expiration #7
+
+#### 0.0.1.alpha.5
+
+* updated check-banner to allow checking for no banner
+
+#### 0.0.1.alpha.4
+
+* added check-mtu functionality #7
+
+#### 0.0.1.alpha.3
+
+* additional functionality to check-banner #6
+
+#### 0.0.1.alpha.2
+
+* all tests pass
+* initial gem release
+
+#### 0.0.1.alpha.1
+
+* initial release, same as community repo

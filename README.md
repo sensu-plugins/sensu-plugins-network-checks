@@ -4,21 +4,22 @@
 [![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-network-checks/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-network-checks)
 [![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-network-checks/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-network-checks)
 [![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-network-checks.svg)](https://gemnasium.com/sensu-plugins/sensu-plugins-network-checks)
+[ ![Codeship Status for sensu-plugins/sensu-plugins-network-checks](https://codeship.com/projects/d8090610-d234-0132-faa9-267aebe4cf02/status?branch=master)](https://codeship.com/projects/77474)
 
 ## Functionality
 
 ## Files
- * bin/check-banner
- * bin/check-multicast-groups
- * bin/check-netstat-tcp
- * bin/check-ping
- * bin/check-ports
- * bin/check-rbl
- * bin/check-whois-domain-expiration
- * bin/metrics-interface
- * bin/metrics-net
- * bin/metrics-netif
- * bin/metrics-netstat-tcp
+ * bin/check-banner.rb
+ * bin/check-multicast-groups.rb
+ * bin/check-netstat-tcp.rb
+ * bin/check-ping.rb
+ * bin/check-ports.rb
+ * bin/check-rbl.rb
+ * bin/check-whois-domain-expiration.rb
+ * bin/metrics-interface.rb
+ * bin/metrics-net.rb
+ * bin/metrics-netif.rb
+ * bin/metrics-netstat-tcp.rb
 
 ## Usage
 
@@ -32,41 +33,7 @@
 ```
 ## Installation
 
-Add the public key (if you haven’t already) as a trusted certificate
+[Installation and Setup](https://github.com/sensu-plugins/documentation/blob/master/user_docs/installation_instructions.md)
 
-```
-gem cert --add <(curl -Ls https://raw.githubusercontent.com/sensu-plugins/sensu-plugins.github.io/master/certs/sensu-plugins.pem)
-gem install sensu-plugins-network-checks -P MediumSecurity
-```
-
-You can also download the key from /certs/ within each repository.
-
-#### Rubygems
-
-`gem install sensu-plugins-network`
-
-#### Bundler
-
-Add *sensu-plugins-network* to your Gemfile and run `bundle install` or `bundle update`
-
-`gem install sensu-plugins-network-checks`
-
-#### Chef
-
-Using the Sensu **sensu_gem** LWRP
-```
-sensu_gem 'sensu-plugins-network-checks' do
-  options('--prerelease')
-  version '0.0.1.alpha.1'
-end
-```
-
-Using the Chef **gem_package** resource
-```
-gem_package 'sensu-plugins-network-checks' do
-  options('--prerelease')
-  version '0.0.1.alpha.1'
-end
-```
 
 ## Notes

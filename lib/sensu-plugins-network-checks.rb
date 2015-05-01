@@ -1,7 +1,14 @@
+require 'sensu-plugins-network-checks/version'
+
+# Load the defaults
+
 #
-# Set gem version
+# Default class
 #
 module SensuPluginsNetworkChecks
-  # Gem version
-  VERSION = '0.0.1.alpha.6'
+  class << self
+  end
+
+  class << self
+  end
 end
