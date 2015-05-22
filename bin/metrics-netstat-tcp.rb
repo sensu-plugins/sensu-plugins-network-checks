@@ -101,7 +101,7 @@ class NetstatTCPMetrics < Sensu::Plugin::Metric::CLI::Graphite
   def run
     timestamp = Time.now.to_i
     netstat('tcp').each do |state, count|
-      graphite_name = config[:port] ? "#{config[:scheme]}.#{config[:port]}.#{state}" :
+      graphite_name = config[:port] ? "#{config[:scheme]}.#{config[:port]}.#{state}" : # rubocop:disable all
         "#{config[:scheme]}.#{state}"
       output "#{graphite_name}", count, timestamp
     end
