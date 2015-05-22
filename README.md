@@ -4,7 +4,7 @@
 [![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-network-checks/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-network-checks)
 [![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-network-checks/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-network-checks)
 [![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-network-checks.svg)](https://gemnasium.com/sensu-plugins/sensu-plugins-network-checks)
-[ ![Codeship Status for sensu-plugins/sensu-plugins-network-checks](https://codeship.com/projects/d8090610-d234-0132-faa9-267aebe4cf02/status?branch=master)](https://codeship.com/projects/77474)
+[![Codeship Status for sensu-plugins/sensu-plugins-network-checks](https://codeship.com/projects/d8090610-d234-0132-faa9-267aebe4cf02/status?branch=master)](https://codeship.com/projects/77474)
 
 ## Functionality
 
