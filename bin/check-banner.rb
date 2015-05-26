@@ -17,7 +17,6 @@
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   gem: timeout
 #
 # USAGE:
 #

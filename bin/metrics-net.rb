@@ -27,7 +27,6 @@
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   gem: <?>
 #
 # USAGE:
 #   $ ./metrics-packets.rb --scheme servers.web01

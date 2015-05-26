@@ -13,7 +13,6 @@
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   gem: <?>
 #
 # USAGE:
 #   $ ./check-netstat-tcp.rb --states ESTABLISHED,CLOSE_WAIT --warning 10,3 --critical 100,30

@@ -38,8 +38,9 @@ Gem::Specification.new do |s|
   s.version                = SensuPluginsNetworkChecks::Version::VER_STRING
 
   s.add_runtime_dependency 'sensu-plugin',  '1.1.0'
-  s.add_runtime_dependency 'dnsbl-client',  '1.0.1'
-  s.add_runtime_dependency 'net',           '0.2.1'
+  s.add_runtime_dependency 'dnsbl-client',  '1.0.2'
+  s.add_runtime_dependency 'net-ping',           '1.7.7'
+  s.add_runtime_dependency 'whois',           '3.5.9'
 
   s.add_development_dependency 'codeclimate-test-reporter', '~> 0.4'
   s.add_development_dependency 'rubocop',                   '~> 0.30'

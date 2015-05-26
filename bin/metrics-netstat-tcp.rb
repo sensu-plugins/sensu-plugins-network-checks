@@ -15,7 +15,6 @@
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   gem: <?>
 #
 # USAGE:
 #   $ ./metrics-netstat-tcp.rb --scheme servers.hostname

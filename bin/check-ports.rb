@@ -14,9 +14,7 @@
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   gem: open3
-#   gem: json
-#   nmap
+#   nmap package
 #
 # USAGE:
 #   $ ./check-ports.rb --host some_server --ports 5671,5672 --level crit
