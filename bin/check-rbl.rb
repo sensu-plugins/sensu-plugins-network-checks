@@ -29,7 +29,7 @@
 #
 
 require 'sensu-plugin/check/cli'
-require 'dnsbl-client'
+require 'dnsbl/client'
 require 'set'
 
 #
