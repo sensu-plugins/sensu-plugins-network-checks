@@ -5,6 +5,13 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## Unreleased][unreleased]
 
+## [0.0.3] - 2015-06-03
+### Fixed
+- check-rbl.rb had a typo in the require statement for 'dnsbl-client'
+
+### Changed
+- cleaned up the gemspec
+
 ## [0.0.2] - 2015-06-03
 
 ### Fixed
