@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-network-checks.svg?branch=master)](https://travis-ci.org/sensu-plugins/sensu-plugins-network-checks)
+[ ![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-network-checks.svg?branch=master)](https://travis-ci.org/sensu-plugins/sensu-plugins-network-checks)
 [![Gem Version](https://badge.fury.io/rb/sensu-plugins-network-checks.svg)](http://badge.fury.io/rb/sensu-plugins-network-checks)
 [![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-network-checks/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-network-checks)
 [![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-network-checks/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-network-checks)
