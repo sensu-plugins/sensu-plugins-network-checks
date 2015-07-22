@@ -12,7 +12,7 @@
 #   Linux
 #
 # DEPENDENCIES:
-#   None
+#   gem: sensu-plugin
 #
 # USAGE:
 #   Specify [-s|--scheme] SCHEME to change the text appended to the metric paths.

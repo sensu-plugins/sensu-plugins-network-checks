@@ -13,6 +13,7 @@
 #   Tested on Mac OS X
 #
 # DEPENDENCIES:
+#   gem: sensu-plugin
 #   gem: whois
 #
 # USAGE:

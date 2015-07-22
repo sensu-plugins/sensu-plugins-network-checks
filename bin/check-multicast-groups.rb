@@ -18,7 +18,6 @@
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   gem: json
 #
 # USAGE:
 #   example commands
