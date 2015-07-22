@@ -15,7 +15,6 @@ RSpec.configure do |c|
 
         def unknown(*); end
       end
-      # rubocop:disable all
       class_variable_set(:@@autorun, PluginStub)
       # rubocop:enable all
     end

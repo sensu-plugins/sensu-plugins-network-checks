@@ -94,7 +94,7 @@ class CheckBanner < Sensu::Plugin::Check::CLI
          long: '--critmessage MESSAGE',
          description: 'Custom critical message to send'
 
-  def acquire_banner(host) # rubocop:disable all
+  def acquire_banner(host)
     timeout(config[:timeout]) do
       sock = TCPSocket.new(host, config[:port])
       sock.puts config[:write] if config[:write]
@@ -128,7 +128,7 @@ class CheckBanner < Sensu::Plugin::Check::CLI
       critical 'Connection closed unexpectedly'
   end
 
-  def run # rubocop:disable all
+  def run
     hosts = config[:hosts].split(',')
     okarray = []
     hosts.each do |host|

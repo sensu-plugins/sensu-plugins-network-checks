@@ -76,11 +76,10 @@ class NetstatTCPMetrics < Sensu::Plugin::Metric::CLI::Graphite
          long: '--port PORT',
          proc: proc(&:to_i)
 
-  def netstat(protocol = 'tcp') # rubocop:disable all
+  def netstat(protocol = 'tcp')
     state_counts = Hash.new(0)
     TCP_STATES.each_pair { |_hex, name| state_counts[name] = 0 }
 
-    # #YELLOW
     File.open('/proc/net/' + protocol).each do |line| # rubocop:disable Style/Next
       line.strip!
       if m = line.match(/^\s*\d+:\s+(.{8}):(.{4})\s+(.{8}):(.{4})\s+(.{2})/) # rubocop:disable AssignmentInCondition

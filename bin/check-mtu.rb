@@ -65,7 +65,6 @@ class CheckMTU < Sensu::Plugin::Check::CLI
     "/sys/class/net/#{config[:interface]}/mtu"
   end
 
-  # rubocop:disable Metrics/AbcSize
   def run
     required_mtu = config[:mtu]
 

@@ -78,12 +78,11 @@ class CheckNetstatTCP < Sensu::Plugin::Check::CLI
          long: '--port PORT',
          proc: proc(&:to_i)
 
-  def netstat(protocols = ['tcp'])  # rubocop:disable all
+  def netstat(protocols = ['tcp'])
     state_counts = Hash.new(0)
     TCP_STATES.each_pair { |_hex, name| state_counts[name] = 0 }
 
     protocols.select { |p| File.exist?('/proc/net/' + p) }.each do |protocol|
-      # #YELLOW
       File.open('/proc/net/' + protocol).each do |line| # rubocop:disable Style/Next
         line.strip!
         if m = line.match(/^\s*\d+:\s+(.{8}|.{32}):(.{4})\s+(.{8}|.{32}):(.{4})\s+(.{2})/) # rubocop:disable AssignmentInCondition
@@ -102,7 +101,7 @@ class CheckNetstatTCP < Sensu::Plugin::Check::CLI
     state_counts
   end
 
-  def run  # rubocop:disable all
+  def run
     state_counts = netstat(%w(tcp tcp6))
     is_critical = false
     is_warning = false

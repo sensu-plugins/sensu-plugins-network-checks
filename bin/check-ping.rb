@@ -72,7 +72,7 @@ class CheckPING < Sensu::Plugin::Check::CLI
          description: 'Attach MTR report if ping is failed',
          default: false
 
-  def run # rubocop:disable all
+  def run
     result = []
     pt = Net::Ping::External.new(config[:host], nil, config[:timeout])
     config[:count].times do |i|

@@ -52,10 +52,10 @@ class CheckPorts < Sensu::Plugin::Check::CLI
          long: '--level crit|warn',
          default: 'WARN'
 
-  def run # rubocop:disable all
+  def run
     stdout, stderr = Open3.capture3(
       ENV,
-      "nmap -P0 -p #{ config[:ports] } #{ config[:host] }"
+      "nmap -P0 -p #{config[:ports]} #{config[:host]}"
     )
 
     case stderr
@@ -74,7 +74,7 @@ class CheckPorts < Sensu::Plugin::Check::CLI
       end
     end
 
-    result = port_checks.map { |state, ports| "#{ state }:#{ ports.join(',') }" }.join(' ')
+    result = port_checks.map { |state, ports| "#{state}:#{ports.join(',')}" }.join(' ')
 
     if check_pass
       ok result

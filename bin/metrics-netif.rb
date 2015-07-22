@@ -38,8 +38,7 @@ class NetIFMetrics < Sensu::Plugin::Metric::CLI::Graphite
          long: '--scheme SCHEME',
          default: "#{Socket.gethostname}"
 
-  def run # rubocop:disable all
-    # #YELLOW
+  def run
     `sar -n DEV 1 1 | grep Average | grep -v IFACE`.each_line do |line|  # rubocop:disable Style/Next
       stats = line.split(/\s+/)
       unless stats.empty?

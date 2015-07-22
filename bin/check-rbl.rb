@@ -53,7 +53,7 @@ class RblCheck < Sensu::Plugin::Check::CLI
          description: 'Comma Separated String of critical blacklists from default list',
          default: 'null'
 
-  def run # rubocop:disable all
+  def run
     c = DNSBL::Client.new
 
     if config[:ip]

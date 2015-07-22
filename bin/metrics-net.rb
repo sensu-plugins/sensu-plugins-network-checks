@@ -57,7 +57,7 @@ class LinuxPacketMetrics < Sensu::Plugin::Metric::CLI::Graphite
          long: '--scheme SCHEME',
          default: "#{Socket.gethostname}.net"
 
-  def run # rubocop:disable all
+  def run
     timestamp = Time.now.to_i
 
     Dir.glob('/sys/class/net/*').each do |iface_path|
