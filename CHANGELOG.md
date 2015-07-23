@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## Unreleased
+### Added
+- Added new metrics-ping.rb plugin
 
 ## [0.0.4] - 2015-07-14
 ### Changed
