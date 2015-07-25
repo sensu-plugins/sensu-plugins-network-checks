@@ -15,6 +15,7 @@
  * bin/check-ping.rb
  * bin/check-ports.rb
  * bin/check-rbl.rb
+ * bin/check-whois-domain-expiration-multi.rb
  * bin/check-whois-domain-expiration.rb
  * bin/metrics-interface.rb
  * bin/metrics-net.rb

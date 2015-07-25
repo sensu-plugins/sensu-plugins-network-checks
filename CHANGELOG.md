@@ -6,6 +6,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## Unreleased
 ### Added
 - Added new metrics-ping.rb plugin
+* Added check-whois-domain-expiration-multi.rb plugin to check multiple domains for expiratino using whois records
 
 ## [0.0.4] - 2015-07-14
 ### Changed
