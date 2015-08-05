@@ -3,10 +3,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
-## Unreleased
+## [Unreleased][unreleased]
+
+## [0.0.5] - 2015-08-05
 ### Added
 - Added new metrics-ping.rb plugin
-* Added check-whois-domain-expiration-multi.rb plugin to check multiple domains for expiratino using whois records
+- Added check-whois-domain-expiration-multi.rb plugin to check multiple domains for expiratino using whois records
+
+### Changed
+- general gem cleanup
+
 
 ## [0.0.4] - 2015-07-14
 ### Changed
