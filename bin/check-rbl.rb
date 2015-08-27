@@ -77,7 +77,7 @@ class RblCheck < Sensu::Plugin::Check::CLI
     criticality = 0
 
     # #YELLOW
-    dnsbl_ret.each do |dnsbl_result| # rubocop:disable Style/Next
+    dnsbl_ret.each do |dnsbl_result|
       if dnsbl_result.meaning =~ /spam/i || dnsbl_result.meaning =~ /blacklist/i
         unless ignored_bls_set.member?(dnsbl_result.dnsbl)
           msg_string =  "#{msg_string} #{dnsbl_result.dnsbl}"

@@ -80,7 +80,7 @@ class NetstatTCPMetrics < Sensu::Plugin::Metric::CLI::Graphite
     state_counts = Hash.new(0)
     TCP_STATES.each_pair { |_hex, name| state_counts[name] = 0 }
 
-    File.open('/proc/net/' + protocol).each do |line| # rubocop:disable Style/Next
+    File.open('/proc/net/' + protocol).each do |line|
       line.strip!
       if m = line.match(/^\s*\d+:\s+(.{8}):(.{4})\s+(.{8}):(.{4})\s+(.{2})/) # rubocop:disable AssignmentInCondition
         connection_state = m[5]
@@ -99,7 +99,7 @@ class NetstatTCPMetrics < Sensu::Plugin::Metric::CLI::Graphite
   def run
     timestamp = Time.now.to_i
     netstat('tcp').each do |state, count|
-      graphite_name = config[:port] ? "#{config[:scheme]}.#{config[:port]}.#{state}" : # rubocop:disable all
+      graphite_name = config[:port] ? "#{config[:scheme]}.#{config[:port]}.#{state}" :
         "#{config[:scheme]}.#{state}"
       output "#{graphite_name}", count, timestamp
     end
