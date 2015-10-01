@@ -27,6 +27,10 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - cleaned up Rakefile
 - updated documentation links
 
+### Refactored
+- renamed check-ports.rb to check-ports-nmap.rb
+- added check-ports.rb based in TCPSocket instead of nmap
+
 ## [0.0.2] - 2015-06-03
 
 ### Fixed

@@ -13,6 +13,7 @@
  * bin/check-multicast-groups.rb
  * bin/check-netstat-tcp.rb
  * bin/check-ping.rb
+ * bin/check-ports-nmap.rb
  * bin/check-ports.rb
  * bin/check-rbl.rb
  * bin/check-whois-domain-expiration-multi.rb
@@ -23,6 +24,25 @@
  * bin/metrics-netstat-tcp.rb
 
 ## Usage
+
+**check-ports**
+This check now uses a TCPSocket, not nmap (see next below)
+```
+check-ports.rb -h 0.0.0.0 -p 22,25,3030 -t 30
+
+Usage: bin/check-ports.rb (options)
+    -H, --hostnames HOSTNAME         Host to connect to
+    -p, --ports PORTS                Ports to check, comma separated
+    -t, --timeout SECS               Connection timeout
+```
+
+**check-ports-nmap**
+```
+Usage: bin/check-ports-nmap.rb (options)
+    -h, --host HOST                  Resolving name or IP address of target host
+    -l, --level crit|warn            Alert level crit(critical) or warn(warning)
+    -t, --ports PORT,PORT...         TCP port(s) you wish to get status for
+```
 
 **check-multicast-groups**
 ```

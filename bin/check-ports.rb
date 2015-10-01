@@ -1,89 +1,84 @@
 #! /usr/bin/env ruby
 #
-#   check-ports
+#  encoding: UTF-8
+#   check-ports-socket
 #
 # DESCRIPTION:
-#   Fetch port status using nmap. This check is good for catching bad network ACLs
-#   or service down events for network resources.
+# Connect to a TCP port on one or more ports, to see if open.   Don't use nmap since it's overkill.
 #
 # OUTPUT:
 #   plain text
 #
 # PLATFORMS:
-#   Linux, Windows, BSD, Solaris, etc
+#   Linux
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   nmap package
 #
 # USAGE:
-#   $ ./check-ports.rb --host some_server --ports 5671,5672 --level crit
+#
+# To check there is only one zk leader
+# ./check-ports-socket.rb -h localhost -p 22,25,80
 #
 # NOTES:
-#   #YELLOW
-#   Look at rewriting this using the namp library to not depend on external tools
+# By default, checks for openssh on localhost port 22
+#
 #
 # LICENSE:
-#   Copyright 2013 GoDaddy.com, LLC <jjmanzer@godaddy.com>
 #   Released under the same terms as Sensu (the MIT license); see LICENSE
 #   for details.
-#
 
-require 'open3'
 require 'sensu-plugin/check/cli'
-require 'json'
+require 'socket'
+require 'timeout'
 
-# CheckPorts
-class CheckPorts < Sensu::Plugin::Check::CLI
+#
+# Check Banner
+#
+class CheckPort < Sensu::Plugin::Check::CLI
   option :host,
-         description: 'Resolving name or IP address of target host',
-         short: '-h HOST',
-         long: '--host HOST',
-         default: 'localhost'
+         short: '-H HOSTNAME',
+         long: '--hostname HOSTNAME',
+         description: 'Host to connect to',
+         default: '0.0.0.0'
 
   option :ports,
-         description: 'TCP port(s) you wish to get status for',
-         short: '-t PORT,PORT...',
-         long: '--ports PORT,PORT...'
+         short: '-p PORTS',
+         long: '--ports PORTS',
+         description: 'Ports to check, comma separated (22,25,3030)',
+         default: '22'
 
-  option :level,
-         description: 'Alert level crit(critical) or warn(warning)',
-         short: '-l crit|warn',
-         long: '--level crit|warn',
-         default: 'WARN'
+  option :timeout,
+         short: '-t SECS',
+         long: '--timeout SECS',
+         description: 'Connection timeout',
+         proc: proc(&:to_i),
+         default: 30
+
+  def check_port(port)
+    timeout(config[:timeout]) do
+      TCPSocket.new(config[:host], port.to_i)
+    end
+    rescue Errno::ECONNREFUSED
+      critical "Connection refused by #{config[:host]}:#{port}"
+    rescue Timeout::Error
+      critical "Connection or read timed out (#{config[:host]}:#{port})"
+    rescue Errno::EHOSTUNREACH
+      critical "Check failed to run: No route to host (#{config[:host]}:#{port})"
+    rescue EOFError
+      critical "Connection closed unexpectedly (#{config[:host]}:#{port})"
+  end
 
   def run
-    stdout, stderr = Open3.capture3(
-      ENV,
-      "nmap -P0 -p #{config[:ports]} #{config[:host]}"
-    )
-
-    case stderr
-    when /Failed to resolve/
-      critical 'cannot resolve the target hostname'
+    ports = config[:ports].split(',')
+    okarray = []
+    ports.each do |port|
+      okarray << 'ok' if check_port port
     end
-
-    port_checks = {}
-    check_pass  = true
-
-    stdout.split("\n").each do |line|
-      line.scan(/(\d+).tcp\s+(\w+)\s+(\w+)/).each do |status|
-        port_checks[status[1]] ||= []
-        port_checks[status[1]].push status[0]
-        check_pass = false unless status[1]['open']
-      end
-    end
-
-    result = port_checks.map { |state, ports| "#{state}:#{ports.join(',')}" }.join(' ')
-
-    if check_pass
-      ok result
-    elsif config[:level].upcase == 'WARN'
-      warning result
-    elsif config[:level].upcase == 'CRIT'
-      critical result
+    if okarray.size == ports.size
+      ok "All ports (#{config[:ports]}) are accessible for host #{config[:host]}"
     else
-      unknown "Unknown alert level #{config[:level]}"
+      critical "port count or pattern #{config[:pattern]} does not match" unless config[:crit_message]
     end
   end
 end
