@@ -5,6 +5,13 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased][unreleased]
 
+## [0.0.6] - 2015-10-01
+### Added
+- Added new port check
+
+### Changed
+- Changed name of check-ports to check-ports-nmap
+
 ## [0.0.5] - 2015-08-05
 ### Added
 - Added new metrics-ping.rb plugin
