@@ -10,6 +10,7 @@
 
 ## Files
  * bin/check-banner.rb
+ * bin/check-jsonwhois-domain-expiration.rb
  * bin/check-multicast-groups.rb
  * bin/check-netstat-tcp.rb
  * bin/check-ping.rb
