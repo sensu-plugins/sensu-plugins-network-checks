@@ -4,7 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased][unreleased]
+- nothing
 
+## [0.0.7] - 2015-10-27
 ### Added
 - Added `check-jsonwhois-domain-expiration.rb` plugin which uses the API at https://jsonwhois.com to check domain expiry.
 

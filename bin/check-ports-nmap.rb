@@ -74,11 +74,7 @@ class CheckPorts < Sensu::Plugin::Check::CLI
       end
     end
 
-<<<<<<< HEAD
     result = port_checks.map { |state, ports| "#{state}:#{ports.join(',')}" }.join(' ')
-=======
-    result = port_checks.map { |state, ports| "#{ state }:#{ ports.join(',') }" }.join(' ')
->>>>>>> bdca9c1f1c66b4e87e69801725d09d5ba9dae26a
 
     if check_pass
       ok result
