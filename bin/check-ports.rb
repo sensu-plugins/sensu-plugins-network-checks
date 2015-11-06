@@ -17,8 +17,8 @@
 #
 # USAGE:
 #
-# To check there is only one zk leader
-# ./check-ports-socket.rb -h localhost -p 22,25,80
+# Ports are comma separated and support ranges
+# ./check-ports.rb -H localhost -p 22,25,8100-8131,3030
 #
 # NOTES:
 # By default, checks for openssh on localhost port 22
@@ -45,7 +45,7 @@ class CheckPort < Sensu::Plugin::Check::CLI
   option :ports,
          short: '-p PORTS',
          long: '--ports PORTS',
-         description: 'Ports to check, comma separated (22,25,3030)',
+         description: 'Ports to check, comma separated (22,25,8100-8131,3030)',
          default: '22'
 
   option :timeout,
@@ -70,7 +70,16 @@ class CheckPort < Sensu::Plugin::Check::CLI
   end
 
   def run
-    ports = config[:ports].split(',')
+    ports = config[:ports].split(',').flat_map do |port|
+      # Port range
+      if port =~ /^[0-9]+(-[0-9]+)$/
+        first_port, last_port = port.split('-')
+        (first_port.to_i..last_port.to_i).to_a
+      # Single port
+      else
+        port
+      end
+    end
     okarray = []
     ports.each do |port|
       okarray << 'ok' if check_port port
