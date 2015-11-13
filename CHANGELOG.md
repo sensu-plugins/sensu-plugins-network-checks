@@ -4,8 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## Unreleased
+
+## [0.0.8] - 2015-11-12
 ### Added
 - Support multiple port ranges for check-ports
+
+### Changed
+- Updated net-ping gem to 1.7.8
+- Updated whois gem to 3.6.2
 
 ## [0.0.7] - 2015-10-27
 ### Added
@@ -25,7 +31,6 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ### Changed
 - general gem cleanup
-
 
 ## [0.0.4] - 2015-07-14
 ### Changed
