@@ -14,7 +14,7 @@ addons:
 
 deploy:
 	skip_cleanup: true
-    
+  
 script:
   - 'bundle exec rake default'
 
