@@ -35,7 +35,7 @@ end
 
 desc 'test for binstubs'
 task :binstubs_tests do
-  bin_list = load_specs.executables
+  bin_list= Gem::Specification.load('*.gemspec')
 
   bin_list.each do |b|
     `which #{ b }`
