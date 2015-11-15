@@ -9,9 +9,9 @@ require 'yard/rake/yardoc_task'
 desc 'Don\'t run Rubocop for unsupported versions'
 begin
   if RUBY_VERSION >= '2.0.0'
-    args = [:spec, :yard, :rubocop]
+    args = [:spec, :yard, :rubocop :gem_tests :binstubs_tests]
   else
-    args = [:spec, :yard]
+    args = [:spec, :yard :gem_tests :binstubs_tests]
   end
 end
 
@@ -25,6 +25,25 @@ RuboCop::RakeTask.new
 
 RSpec::Core::RakeTask.new(:spec) do |r|
   r.pattern = FileList['**/**/*_spec.rb']
+end
+
+desc 'Test gem install'
+task :gem_tests do
+  `gem build *.gemspec`
+  `gem install *.gem`
+end
+
+desc 'test for binstubs'
+task :binstubs_tests do
+  bin_list = load_specs.executables
+
+  bin_list.each do |b|
+    `which #{ b }`
+    if ! $?.success?
+      puts "#{ b } was not a binstub"
+      exit
+    end
+  end
 end
 
 task default: args
