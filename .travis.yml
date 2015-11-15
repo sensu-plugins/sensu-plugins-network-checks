@@ -9,6 +9,12 @@ rvm:
   - 2.1
   - 2.2
 
+addons:
+  artifacts: true
+
+deploy:
+	skip_cleanup: true
+    
 script:
   - 'bundle exec rake default'
 
