@@ -29,8 +29,9 @@ end
 
 desc 'Test gem install'
 task :gem_tests do
+  ver = Gem::Specification.load('sensu-plugins-network-checks.gemspec').version
   `gem build sensu-plugins-network-checks.gemspec`
-  `gem install *.gem`
+  `gem install sensu-plugins-network-checks-#{ver}.gem`
 end
 
 desc 'test for binstubs'
