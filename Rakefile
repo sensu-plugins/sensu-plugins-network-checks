@@ -29,13 +29,13 @@ end
 
 desc 'Test gem install'
 task :gem_tests do
-  `gem build *.gemspec`
+  `gem build sensu-plugins-network-checks.gemspec`
   `gem install *.gem`
 end
 
 desc 'test for binstubs'
 task :binstubs_tests do
-  bin_list= Gem::Specification.load('*.gemspec')
+  bin_list= Gem::Specification.load('sensu-plugins-network-checks.gemspec').executables
 
   bin_list.each do |b|
     `which #{ b }`
