@@ -9,9 +9,9 @@ require 'yard/rake/yardoc_task'
 desc 'Don\'t run Rubocop for unsupported versions'
 begin
   if RUBY_VERSION >= '2.0.0'
-    args = [:spec, :yard, :rubocop, :gem_tests, :binstubs_tests]
+    args = [:spec, :yard, :rubocop, :binstubs_tests, :gem_tests ]
   else
-    args = [:spec, :yard, :gem_tests, :binstubs_tests]
+    args = [:spec, :yard, :binstubs_tests, :gem_tests]
   end
 end
 
