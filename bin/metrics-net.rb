@@ -36,7 +36,9 @@
 #   servers.web01.eth1.rx_packets 563787422 1351112745
 #
 # NOTES:
-#   Does it behave differently on specific platforms, specific use cases, etc
+#   Does it behave differently on specific platforms, specific use cases, etc.
+#   Devices can be specifically included or ignored using -i or -I options:
+#     e.g. metrics-net.rb -i veth,dummy
 #
 # LICENSE:
 #   Copyright 2012 Joe Miller <https://github.com/joemiller>
@@ -57,6 +59,18 @@ class LinuxPacketMetrics < Sensu::Plugin::Metric::CLI::Graphite
          long: '--scheme SCHEME',
          default: "#{Socket.gethostname}.net"
 
+  option :ignore_device,
+         description: 'Ignore devices matching pattern(s)',
+         short: '-i DEV[,DEV]',
+         long: '--ignore-device',
+         proc: proc { |a| a.split(',') }
+
+  option :include_device,
+         description: 'Include only devices matching pattern(s)',
+         short: '-I DEV[,DEV]',
+         long: '--include-device',
+         proc: proc { |a| a.split(',') }
+
   def run
     timestamp = Time.now.to_i
 
@@ -64,6 +78,9 @@ class LinuxPacketMetrics < Sensu::Plugin::Metric::CLI::Graphite
       next if File.file?(iface_path)
       iface = File.basename(iface_path)
       next if iface == 'lo'
+
+      next if config[:ignore_device] && config[:ignore_device].find { |x| iface.match(x) }
+      next if config[:include_device] && !config[:include_device].find { |x| iface.match(x) }
 
       tx_pkts = File.open(iface_path + '/statistics/tx_packets').read.strip
       rx_pkts = File.open(iface_path + '/statistics/rx_packets').read.strip
