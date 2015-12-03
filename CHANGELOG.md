@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## Unreleased
+### Added
+- Added include and ignore options for devices at `metrics-net.rb`
 
 ## [0.0.8] - 2015-11-12
 ### Added
