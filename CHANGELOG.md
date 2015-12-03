@@ -4,8 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## Unreleased
+
+## [0.1.0] - 2015-12-03
 ### Added
 - Added include and ignore options for devices at `metrics-net.rb`
+
+### Changed
+- Updated whois gem to 3.6.3
 
 ## [0.0.8] - 2015-11-12
 ### Added
@@ -29,7 +34,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## [0.0.5] - 2015-08-05
 ### Added
 - Added new metrics-ping.rb plugin
-- Added check-whois-domain-expiration-multi.rb plugin to check multiple domains for expiratino using whois records
+- Added check-whois-domain-expiration-multi.rb plugin to check multiple domains for expiration using whois records
 
 ### Changed
 - general gem cleanup
