@@ -91,6 +91,7 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
     if !status['critical'].empty?
       critical status['critical'].map { |u, v| "#{u} days left:#{v}" }.join(',')
     elsif !status['warning'].empty?
+      warning status['warning'].map { |u, v| "#{u} days left:#{v}" }.join(',')
     else
       ok 'No domains expire in the near term'
     end
