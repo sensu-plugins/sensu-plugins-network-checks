@@ -5,7 +5,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## Unreleased
 
-### Changed
+## [0.1.2] - 2016-01-08
+### Fixed
 - Bugfix for `check-whois-domain-expiration-multi` and `check-jsonwhois-domain-expiration`: return a warning-level response if there were any domains with expiration dates in the warning time period but none in the critical time period.
 
 ## [0.1.1] - 2015-12-21
