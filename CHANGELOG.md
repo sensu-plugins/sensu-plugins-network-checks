@@ -5,6 +5,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## Unreleased
 
+### Changed
+- Bugfix for `check-whois-domain-expiration-multi` and `check-jsonwhois-domain-expiration`: return a warning-level response if there were any domains with expiration dates in the warning time period but none in the critical time period.
+
 ## [0.1.1] - 2015-12-21
 ### Added
 - activesupport runtime dependency locked to 4.2.5 to ensure that we do not need ruby > 2.2
