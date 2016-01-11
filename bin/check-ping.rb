@@ -37,6 +37,12 @@ class CheckPING < Sensu::Plugin::Check::CLI
          short: '-h host',
          default: 'localhost'
 
+  option :ipv6,
+         short: '-6',
+         long: '--ipv6',
+         description: 'Ping IPv6 address',
+         default: false
+
   option :timeout,
          short: '-T timeout',
          proc: proc(&:to_i),
@@ -75,9 +81,10 @@ class CheckPING < Sensu::Plugin::Check::CLI
   def run
     result = []
     pt = Net::Ping::External.new(config[:host], nil, config[:timeout])
+    config[:ipv6] ? (ping = pt.ping6) : (ping = pt.ping)
     config[:count].times do |i|
       sleep(config[:interval]) unless i == 0
-      result[i] = pt.ping?
+      result[i] = ping
     end
 
     successful_count = result.count(true)
