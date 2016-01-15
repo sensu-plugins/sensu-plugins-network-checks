@@ -11,18 +11,22 @@
 ## Files
  * bin/check-banner.rb
  * bin/check-jsonwhois-domain-expiration.rb
+ * bin/check-mtu.rb
  * bin/check-multicast-groups.rb
  * bin/check-netstat-tcp.rb
  * bin/check-ping.rb
  * bin/check-ports-nmap.rb
  * bin/check-ports.rb
  * bin/check-rbl.rb
+ * bin/check-socat.rb
  * bin/check-whois-domain-expiration-multi.rb
  * bin/check-whois-domain-expiration.rb
  * bin/metrics-interface.rb
  * bin/metrics-net.rb
  * bin/metrics-netif.rb
  * bin/metrics-netstat-tcp.rb
+ * bin/metrics-ping.rb
+ * bin/metrics-sockstat.rb
 
 ## Usage
 
