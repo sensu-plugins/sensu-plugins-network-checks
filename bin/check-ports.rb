@@ -42,7 +42,7 @@ class CheckPort < Sensu::Plugin::Check::CLI
          description: 'Host to connect to',
          default: '0.0.0.0'
  
-option :scheme,
+ option :scheme,
          description: 'Metric naming scheme, text to prepend to $protocol.$field',
          long: '--scheme SCHEME',
          short: '-s SCHEME',
