@@ -36,7 +36,7 @@ require 'timeout'
 # Check Banner
 #
 class CheckPort < Sensu::Plugin::Check::CLI
-  option :host,
+ option :host,
          short: '-H HOSTNAME',
          long: '--hostname HOSTNAME',
          description: 'Host to connect to',
