@@ -79,6 +79,7 @@ class CheckPort < Sensu::Plugin::Check::CLI
   end
 
   def run
+  @timestamp = Time.now.to_i
     ports = config[:ports].split(',').flat_map do |port|
       # Port range
       if port =~ /^[0-9]+(-[0-9]+)$/
