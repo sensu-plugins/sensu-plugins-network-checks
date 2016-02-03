@@ -64,7 +64,7 @@ class PingMetrics < Sensu::Plugin::Check::CLI
          default: 5
 
   OVERVIEW_METRICS = [:packets_transmitted, :packets_received, :packet_loss, :time]
-  STATISTIC_METRICS = [:min, :max, :avg, :mdev]
+  STATISTIC_METRICS = [:min, :avg, :max, :mdev]
   FLOAT = '(\d+\.\d+)'
 
   def overview
