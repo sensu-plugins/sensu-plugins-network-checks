@@ -22,6 +22,12 @@
 #   gem: sensu-plugin
 #   gem: open3
 #
+# WARNING:
+#  This plugins requires `ping` binary from `iputils-ping` package.
+#  `ping` binary from `inetutils-ping` package produces incompatible
+#  output. For more info see:
+#  https://github.com/sensu-plugins/sensu-plugins-network-checks/issues/26
+#
 # USAGE:
 #   ./metric-ping --host <host> --count <count> \
 #                 --timeout <timeout> --scheme <scheme>
