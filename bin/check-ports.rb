@@ -36,11 +36,18 @@ require 'timeout'
 # Check Banner
 #
 class CheckPort < Sensu::Plugin::Check::CLI
-  option :host,
+ option :host,
          short: '-H HOSTNAME',
          long: '--hostname HOSTNAME',
          description: 'Host to connect to',
          default: '0.0.0.0'
+ 
+ option :scheme,
+         description: 'Metric naming scheme, text to prepend to $protocol.$field',
+         long: '--scheme SCHEME',
+         short: '-s SCHEME',
+         default: 'ports.status'
+
 
   option :ports,
          short: '-p PORTS',
@@ -60,7 +67,9 @@ class CheckPort < Sensu::Plugin::Check::CLI
       TCPSocket.new(config[:host], port.to_i)
     end
     rescue Errno::ECONNREFUSED
-      critical "Connection refused by #{config[:host]}:#{port}"
+      #critical "Connection refused by #{config[:host]}:#{port}"
+     puts "#{config[:scheme]} 0 #{@timestamp} "
+    exit
     rescue Timeout::Error
       critical "Connection or read timed out (#{config[:host]}:#{port})"
     rescue Errno::EHOSTUNREACH
@@ -70,6 +79,7 @@ class CheckPort < Sensu::Plugin::Check::CLI
   end
 
   def run
+  @timestamp = Time.now.to_i
     ports = config[:ports].split(',').flat_map do |port|
       # Port range
       if port =~ /^[0-9]+(-[0-9]+)$/
@@ -85,9 +95,12 @@ class CheckPort < Sensu::Plugin::Check::CLI
       okarray << 'ok' if check_port port
     end
     if okarray.size == ports.size
-      ok "All ports (#{config[:ports]}) are accessible for host #{config[:host]}"
-    else
-      critical "port count or pattern #{config[:pattern]} does not match" unless config[:crit_message]
+      puts "#{config[:scheme]} 1 #{@timestamp}"
+      exit
+      else
+      puts "#{config[:scheme]} 0 #{@timestamp} "
+      exit
+       #  critical "port count or pattern #{config[:pattern]} does not match" unless config[:crit_message]
     end
   end
 end
