@@ -1,10 +1,10 @@
 #! /usr/bin/env ruby
 #
 #  encoding: UTF-8
-#   check-ports-socket
+#   check-ports
 #
 # DESCRIPTION:
-# Connect to a TCP port on one or more ports, to see if open.   Don't use nmap since it's overkill.
+# Connect to a TCP/UDP port on one or more ports, to see if open.   Don't use nmap since it's overkill.
 #
 # OUTPUT:
 #   plain text
@@ -18,7 +18,7 @@
 # USAGE:
 #
 # Ports are comma separated and support ranges
-# ./check-ports.rb -H localhost -p 22,25,8100-8131,3030
+# ./check-ports.rb -H localhost -p 22,25,8100-8131,3030 -P tcp
 #
 # NOTES:
 # By default, checks for openssh on localhost port 22
