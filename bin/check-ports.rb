@@ -46,7 +46,13 @@ class CheckPort < Sensu::Plugin::Check::CLI
          short: '-p PORTS',
          long: '--ports PORTS',
          description: 'Ports to check, comma separated (22,25,8100-8131,3030)',
-         default: '22'
+         default: '8123'
+
+  option :proto,
+         short: '-P PROTOCOL',
+         long: '--protocol PROTOCOL',
+         description: 'Protocol to check: tpc (default) or upd',
+         default: 'tcp'
 
   option :timeout,
          short: '-t SECS',
@@ -57,7 +63,7 @@ class CheckPort < Sensu::Plugin::Check::CLI
 
   def check_port(port)
     timeout(config[:timeout]) do
-      TCPSocket.new(config[:host], port.to_i)
+      config[:proto].downcase == 'tcp' ? TCPSocket.new(config[:host], port.to_i) : UDPSocket.open.connect(config[:host], port.to_i)
     end
     rescue Errno::ECONNREFUSED
       critical "Connection refused by #{config[:host]}:#{port}"
@@ -87,7 +93,7 @@ class CheckPort < Sensu::Plugin::Check::CLI
     if okarray.size == ports.size
       ok "All ports (#{config[:ports]}) are accessible for host #{config[:host]}"
     else
-      critical "port count or pattern #{config[:pattern]} does not match" unless config[:crit_message]
+      warning "port count or pattern #{config[:pattern]} does not match" unless config[:crit_message]
     end
   end
 end
