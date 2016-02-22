@@ -61,7 +61,7 @@ describe CheckPort  do
   end
 
   it 'returns ok by default with both ssh and local http service' do
-    checker_tcp.config[:host] = 22,80
+    checker_tcp.config[:host] = 22, 80
     begin
       allow(TCPSocket).to receive(:new).and_return(true)
       checker_tcp.run
@@ -73,7 +73,7 @@ describe CheckPort  do
 
   it 'returns critical because of connection refused' do
     begin
-      allow(TCPSocket).to receive(:new) { raise Errno::ECONNREFUSED }
+      allow(TCPSocket).to receive(:new) { fail Errno::ECONNREFUSED }
       checker_tcp.run
     rescue SystemExit => e
       exit_code = e.status
@@ -83,7 +83,7 @@ describe CheckPort  do
 
   it 'returns critical because of timeout' do
     begin
-      allow(TCPSocket).to receive(:new) { raise Timeout::Error }
+      allow(TCPSocket).to receive(:new) { fail Timeout::Error }
       checker_tcp.run
     rescue SystemExit => e
       exit_code = e.status
@@ -93,7 +93,7 @@ describe CheckPort  do
 
   it 'returns critical because of no route to host' do
     begin
-      allow(TCPSocket).to receive(:new) { raise Errno::EHOSTUNREACH }
+      allow(TCPSocket).to receive(:new) { fail Errno::EHOSTUNREACH }
       checker_tcp.run
     rescue SystemExit => e
       exit_code = e.status
@@ -103,7 +103,7 @@ describe CheckPort  do
 
   it 'returns critical because of conn closed' do
     begin
-      allow(TCPSocket).to receive(:new) { raise EOFError }
+      allow(TCPSocket).to receive(:new) { fail EOFError }
       checker_tcp.run
     rescue SystemExit => e
       exit_code = e.status
