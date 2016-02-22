@@ -46,7 +46,7 @@ class CheckPort < Sensu::Plugin::Check::CLI
          short: '-p PORTS',
          long: '--ports PORTS',
          description: 'Ports to check, comma separated (22,25,8100-8131,3030)',
-         default: '8123'
+         default: '22'
 
   option :proto,
          short: '-P PROTOCOL',
