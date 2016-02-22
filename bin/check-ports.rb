@@ -51,7 +51,7 @@ class CheckPort < Sensu::Plugin::Check::CLI
   option :proto,
          short: '-P PROTOCOL',
          long: '--protocol PROTOCOL',
-         description: 'Protocol to check: tpc (default) or upd',
+         description: 'Protocol to check: tpc (default) or udp',
          default: 'tcp'
 
   option :timeout,
