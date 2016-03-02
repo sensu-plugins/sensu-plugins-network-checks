@@ -1,19 +1,31 @@
 language: ruby
 cache:
-  - bundler
+- bundler
 install:
-  - bundle install
+- bundle install
 rvm:
-  - 1.9.3
-  - 2.0
-  - 2.1
-  - 2.2
+- 1.9.3
+- 2.0
+- 2.1
+- 2.2
 notifications:
   email:
     recipients:
-      - sensu-plugin@sensu-plugins.io
+    - sensu-plugin@sensu-plugins.io
     on_success: change
     on_failure: always
-
 script:
-  - 'bundle exec rake default'
+- bundle exec rake default
+deploy:
+  provider: rubygems
+  api_key:
+    secure: kyjE8RWBwlg7r3IHVvuX5YEGlf4TjCFrd+Bggs/h6vtbTbzmqoE9bLiZSpFoVFDQZ7oM/35VyTQESGvEFAgyi54zuQ5PZTfoNpWawzawiAOzDoRuCmiyuYGEwVRNy4kc6LUjHPVZPbCCX8y+RS72R3G2WJQZV30b7jDGkG43kFs=
+  gem: sensu-plugins-network-checks
+  on:
+    tags: true
+    all_branches: true
+    rvm: 1.9.3
+    rvm: 2.0
+    rvm: 2.1
+    rvm: 2.2
+    repo: sensu-plugins/sensu-plugins-network-checks

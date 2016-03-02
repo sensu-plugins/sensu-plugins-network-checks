@@ -9,11 +9,11 @@ else
   require_relative 'lib/sensu-plugins-network-checks'
 end
 
-pvt_key = '~/.ssh/gem-private_key.pem'
+#pvt_key = '~/.ssh/gem-private_key.pem'
 
 Gem::Specification.new do |s|
   s.authors                = ['Sensu-Plugins and contributors']
-  s.cert_chain             = ['certs/sensu-plugins.pem']
+  #s.cert_chain             = ['certs/sensu-plugins.pem']
   s.date                   = Date.today.to_s
   s.description            = 'This plugin provides native network instrumentation
                               for monitoring and metrics collection, including:
@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.post_install_message   = 'You can use the embedded Ruby by setting EMBEDDED_RUBY=true in /etc/default/sensu'
   s.require_paths          = ['lib']
   s.required_ruby_version  = '>= 1.9.3'
-  s.signing_key            = File.expand_path(pvt_key) if $PROGRAM_NAME =~ /gem\z/
+  #s.signing_key            = File.expand_path(pvt_key) if $PROGRAM_NAME =~ /gem\z/
   s.summary                = 'Sensu plugins for checking network hardware, connections, and data'
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
   s.version                = SensuPluginsNetworkChecks::Version::VER_STRING
@@ -53,6 +53,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rdoc',                      '~> 4.2.1'
   s.add_development_dependency 'redcarpet',                 '~> 3.2'
   s.add_development_dependency 'rspec',                     '~> 3.1'
-  s.add_development_dependency 'rubocop',                   '0.32.1'
+  s.add_development_dependency 'rubocop',                   '~> 0.37'
   s.add_development_dependency 'yard',                      '~> 0.8'
 end
