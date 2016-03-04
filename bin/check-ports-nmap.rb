@@ -78,9 +78,9 @@ class CheckPorts < Sensu::Plugin::Check::CLI
 
     if check_pass
       ok result
-    elsif config[:level].upcase == 'WARN'
+    elsif config[:level].casecmp('WARN').zero?
       warning result
-    elsif config[:level].upcase == 'CRIT'
+    elsif config[:level].casecmp('CRIT').zero?
       critical result
     else
       unknown "Unknown alert level #{config[:level]}"

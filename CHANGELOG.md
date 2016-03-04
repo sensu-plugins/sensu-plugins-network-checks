@@ -120,3 +120,17 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 #### 0.0.1.alpha.1
 
 * initial release, same as community repo
+
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.1.4...HEAD
+[0.1.4]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.1.3...0.1.4
+[0.1.3]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.1.2...0.1.3
+[0.1.2]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.1.1...0.1.2
+[0.1.1]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.1.0...0.Ï.1
+[0.1.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.0.8...0.1.0
+[0.0.7]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.0.7...0.0.8
+[0.0.7]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.0.6...0.0.7
+[0.0.6]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.0.5...0.0.6
+[0.0.5]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.0.4...0.0.5
+[0.0.4]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.0.3...0.0.4
+[0.0.3]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.0.2...0.0.3
+[0.0.2]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.0.1...0.0.2

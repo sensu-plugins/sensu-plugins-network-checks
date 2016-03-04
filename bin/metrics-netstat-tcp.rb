@@ -58,7 +58,7 @@ TCP_STATES = {
   '09' => 'LAST_ACK',
   '0A' => 'LISTEN',
   '0B' => 'CLOSING'
-}
+}.freeze
 
 #
 # Netstat TCP Metrics
@@ -101,7 +101,7 @@ class NetstatTCPMetrics < Sensu::Plugin::Metric::CLI::Graphite
     netstat('tcp').each do |state, count|
       graphite_name = config[:port] ? "#{config[:scheme]}.#{config[:port]}.#{state}" :
         "#{config[:scheme]}.#{state}"
-      output "#{graphite_name}", count, timestamp
+      output graphite_name.to_s, count, timestamp
     end
     ok
   end

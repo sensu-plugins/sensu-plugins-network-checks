@@ -35,7 +35,7 @@ class NetIFMetrics < Sensu::Plugin::Metric::CLI::Graphite
   option :scheme,
          description: 'Metric naming scheme, text to prepend to .$parent.$child',
          long: '--scheme SCHEME',
-         default: "#{Socket.gethostname}"
+         default: Socket.gethostname.to_s
 
   def run
     `sar -n DEV 1 1 | grep Average | grep -v IFACE`.each_line do |line|

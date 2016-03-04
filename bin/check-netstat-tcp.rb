@@ -45,7 +45,7 @@ TCP_STATES = {
   '09' => 'LAST_ACK',
   '0A' => 'LISTEN',
   '0B' => 'CLOSING'
-}
+}.freeze
 
 #
 # Check Netstat TCP

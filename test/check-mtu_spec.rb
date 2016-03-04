@@ -29,7 +29,7 @@
 require_relative '../bin/check-mtu'
 require_relative './spec_helper.rb'
 
-describe CheckMTU  do
+describe CheckMTU do
   let(:checker) { described_class.new }
   let(:checker_9000) { described_class.new }
   let(:checker_no_file) { described_class.new }
@@ -40,12 +40,15 @@ describe CheckMTU  do
     def checker.locate_mtu_file
       'test/fixtures/check-mtu-1500'
     end
+
     def checker.ok(*_args)
       exit 0
     end
+
     def checker.warning(*_args)
       exit 1
     end
+
     def checker.critical(*_args)
       exit 2
     end
@@ -96,12 +99,15 @@ describe CheckMTU  do
     def checker_9000.locate_mtu_file
       'test/fixtures/check-mtu-9000'
     end
+
     def checker_9000.ok(*_args)
       exit 0
     end
+
     def checker_9000.warning(*_args)
       exit 1
     end
+
     def checker_9000.critical(*_args)
       exit 2
     end
@@ -152,12 +158,15 @@ describe CheckMTU  do
     def checker_no_file.locate_mtu_file
       'no_existing_file'
     end
+
     def checker_no_file.ok(*_args)
       exit 0
     end
+
     def checker_no_file.warning(*_args)
       exit 1
     end
+
     def checker_no_file.critical(*_args)
       exit 2
     end

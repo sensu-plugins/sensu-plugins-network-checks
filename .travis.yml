@@ -16,10 +16,12 @@ notifications:
     on_failure: always
 script:
 - bundle exec rake default
+- gem build sensu-plugins-network-checks.gemspec
+- gem install sensu-plugins-network-checks-*.gem
 deploy:
   provider: rubygems
   api_key:
-    secure: kyjE8RWBwlg7r3IHVvuX5YEGlf4TjCFrd+Bggs/h6vtbTbzmqoE9bLiZSpFoVFDQZ7oM/35VyTQESGvEFAgyi54zuQ5PZTfoNpWawzawiAOzDoRuCmiyuYGEwVRNy4kc6LUjHPVZPbCCX8y+RS72R3G2WJQZV30b7jDGkG43kFs=
+    secure: l79xZquLcaZ1AqR58Vahu2PhIwz4UHpVN3vJZYOOO2phYC5qi1Q4UAQsg1Yw3sgY/3wrjtTPGo26MbGDs86oZXE9Gq8L9paIyRDGhTWp/Y5+q7vUx7gBGu/r1kVco2UTwXAUr/cWA+WbiqYYlTiTIxBLJlsbE2mPGOnW2H97cCc=
   gem: sensu-plugins-network-checks
   on:
     tags: true

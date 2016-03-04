@@ -42,9 +42,11 @@ describe CheckPort  do
     def checker_tcp.ok(*_args)
       exit 0
     end
+
     def checker_tcp.warning(*_args)
       exit 1
     end
+
     def checker_tcp.critical(*_args)
       exit 2
     end
@@ -73,7 +75,7 @@ describe CheckPort  do
 
   it 'returns critical because of connection refused' do
     begin
-      allow(TCPSocket).to receive(:new) { fail Errno::ECONNREFUSED }
+      allow(TCPSocket).to receive(:new) { raise Errno::ECONNREFUSED }
       checker_tcp.run
     rescue SystemExit => e
       exit_code = e.status
@@ -83,7 +85,7 @@ describe CheckPort  do
 
   it 'returns critical because of timeout' do
     begin
-      allow(TCPSocket).to receive(:new) { fail Timeout::Error }
+      allow(TCPSocket).to receive(:new) { raise Timeout::Error }
       checker_tcp.run
     rescue SystemExit => e
       exit_code = e.status
@@ -93,7 +95,7 @@ describe CheckPort  do
 
   it 'returns critical because of no route to host' do
     begin
-      allow(TCPSocket).to receive(:new) { fail Errno::EHOSTUNREACH }
+      allow(TCPSocket).to receive(:new) { raise Errno::EHOSTUNREACH }
       checker_tcp.run
     rescue SystemExit => e
       exit_code = e.status
@@ -103,7 +105,7 @@ describe CheckPort  do
 
   it 'returns critical because of conn closed' do
     begin
-      allow(TCPSocket).to receive(:new) { fail EOFError }
+      allow(TCPSocket).to receive(:new) { raise EOFError }
       checker_tcp.run
     rescue SystemExit => e
       exit_code = e.status
@@ -121,9 +123,11 @@ describe CheckPort  do
     def checker_udp.ok(*_args)
       exit 0
     end
+
     def checker_udp.warning(*_args)
       exit 1
     end
+
     def checker_udp.critical(*_args)
       exit 2
     end

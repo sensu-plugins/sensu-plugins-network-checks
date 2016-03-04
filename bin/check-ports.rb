@@ -63,16 +63,16 @@ class CheckPort < Sensu::Plugin::Check::CLI
 
   def check_port(port)
     timeout(config[:timeout]) do
-      config[:proto].downcase == 'tcp' ? TCPSocket.new(config[:host], port.to_i) : UDPSocket.open.connect(config[:host], port.to_i)
+      config[:proto].casecmp('tcp').zero? ? TCPSocket.new(config[:host], port.to_i) : UDPSocket.open.connect(config[:host], port.to_i)
     end
-    rescue Errno::ECONNREFUSED
-      critical "Connection refused by #{config[:host]}:#{port}"
-    rescue Timeout::Error
-      critical "Connection or read timed out (#{config[:host]}:#{port})"
-    rescue Errno::EHOSTUNREACH
-      critical "Check failed to run: No route to host (#{config[:host]}:#{port})"
-    rescue EOFError
-      critical "Connection closed unexpectedly (#{config[:host]}:#{port})"
+  rescue Errno::ECONNREFUSED
+    critical "Connection refused by #{config[:host]}:#{port}"
+  rescue Timeout::Error
+    critical "Connection or read timed out (#{config[:host]}:#{port})"
+  rescue Errno::EHOSTUNREACH
+    critical "Check failed to run: No route to host (#{config[:host]}:#{port})"
+  rescue EOFError
+    critical "Connection closed unexpectedly (#{config[:host]}:#{port})"
   end
 
   def run

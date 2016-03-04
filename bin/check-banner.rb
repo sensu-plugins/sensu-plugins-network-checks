@@ -118,14 +118,14 @@ class CheckBanner < Sensu::Plugin::Check::CLI
     timeout(config[:timeout]) do
       TCPSocket.new(host, config[:port])
     end
-    rescue Errno::ECONNREFUSED
-      critical "Connection refused by #{host}:#{config[:port]}"
-    rescue Timeout::Error
-      critical 'Connection or read timed out'
-    rescue Errno::EHOSTUNREACH
-      critical 'Check failed to run: No route to host'
-    rescue EOFError
-      critical 'Connection closed unexpectedly'
+  rescue Errno::ECONNREFUSED
+    critical "Connection refused by #{host}:#{config[:port]}"
+  rescue Timeout::Error
+    critical 'Connection or read timed out'
+  rescue Errno::EHOSTUNREACH
+    critical 'Check failed to run: No route to host'
+  rescue EOFError
+    critical 'Connection closed unexpectedly'
   end
 
   def run

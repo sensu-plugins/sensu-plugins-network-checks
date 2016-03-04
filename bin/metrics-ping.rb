@@ -69,9 +69,9 @@ class PingMetrics < Sensu::Plugin::Check::CLI
          long: '--timeout TIMEOUT',
          default: 5
 
-  OVERVIEW_METRICS = [:packets_transmitted, :packets_received, :packet_loss, :time]
-  STATISTIC_METRICS = [:min, :avg, :max, :mdev]
-  FLOAT = '(\d+\.\d+)'
+  OVERVIEW_METRICS = [:packets_transmitted, :packets_received, :packet_loss, :time].freeze
+  STATISTIC_METRICS = [:min, :avg, :max, :mdev].freeze
+  FLOAT = '(\d+\.\d+)'.freeze
 
   def overview
     @ping.split("\n")[-2].scan(/^(\d+) packets transmitted, (\d+) received, (\d+)% packet loss, time (\d+)ms/)[0]
