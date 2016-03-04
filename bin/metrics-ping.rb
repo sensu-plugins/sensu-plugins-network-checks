@@ -40,11 +40,11 @@
 #   for details.
 #
 
-require 'sensu-plugin/check/cli'
+require 'sensu-plugin/metric/cli'
 require 'socket'
 require 'open3'
 
-class PingMetrics < Sensu::Plugin::Check::CLI
+class PingMetrics < Sensu::Plugin::Metric::CLI::Graphite
   option :scheme,
          description: 'Metric naming scheme, text to prepend to metric',
          short: '-s SCHEME',
@@ -89,8 +89,8 @@ class PingMetrics < Sensu::Plugin::Check::CLI
     @timestamp ||= Time.now.to_i
   end
 
-  def output
-    results.each { |metric, value| puts "#{config[:scheme]}.#{metric} #{value} #{timestamp}" }
+  def write_output
+    results.each { |metric, value| output "#{config[:scheme]}.#{metric} #{value} #{timestamp}" }
   end
 
   def ping
@@ -98,13 +98,13 @@ class PingMetrics < Sensu::Plugin::Check::CLI
   end
 
   def validate
-    critical "ping error: (#{status}): #{@ping}" if @status != 0
+    critical "ping error: unable to ping #{config[:host]}" unless @status.success?
   end
 
   def run
     ping
     validate
-    output
-    exit 0
+    write_output
+    ok
   end
 end

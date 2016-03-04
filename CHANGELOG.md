@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Fixed
+- metrics-ping.rb: Fix error when a host can't be pinged. Convert to a proper metrics check.
 
 ## [0.1.4] - 2016-01-22
 ### Added
