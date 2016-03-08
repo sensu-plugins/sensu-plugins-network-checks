@@ -59,6 +59,13 @@ class CheckBanner < Sensu::Plugin::Check::CLI
          long: '--write STRING',
          description: 'write STRING to the socket'
 
+  option :exclude_newline,
+         short: '-e',
+         long: '--exclude_newline',
+         description: 'Exclude newline character at end of write STRING',
+         boolean: true,
+         default: false
+
   option :pattern,
          short: '-q PAT',
          long: '--pattern PAT',
@@ -97,7 +104,10 @@ class CheckBanner < Sensu::Plugin::Check::CLI
   def acquire_banner(host)
     timeout(config[:timeout]) do
       sock = TCPSocket.new(host, config[:port])
-      sock.puts config[:write] if config[:write]
+      if config[:write]
+        sock.write config[:write]
+        sock.write "\n" unless config[:exclude_newline]
+      end
       if config[:read_till] == 'EOF'
         sock.gets(nil)
       else
