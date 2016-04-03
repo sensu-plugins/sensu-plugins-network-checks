@@ -4,10 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+
+## [0.2.4] - 2016-04-02
 ### Fixed
 - metrics-ping.rb: Fix error when a host can't be pinged. Convert to a proper metrics check.
 
 ### Added
+- basic check for netfilter conntrack
 - Option for newline character in write string for check-banner
 
 ## [0.1.4] - 2016-01-22
@@ -126,7 +129,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 * initial release, same as community repo
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.1.4...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.2.4...HEAD
+[0.2.4]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.1.4...0.2.4
 [0.1.4]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.1.3...0.1.4
 [0.1.3]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.1.2...0.1.3
 [0.1.2]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.1.1...0.1.2
