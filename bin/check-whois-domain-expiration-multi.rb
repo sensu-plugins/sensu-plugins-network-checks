@@ -52,6 +52,12 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
          default: 7,
          description: 'Critical if fewer than DAYS away'
 
+  option :timeout,
+         short: '-t SECONDS',
+         long: '--timeout SECONDS',
+         default: 10,
+         description: 'Timeout for whois lookup'
+
   option :help,
          short: '-h',
          long: '--help',
@@ -71,16 +77,27 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
     results['critical'] = {}
     results['warning'] = {}
     results['ok'] = {}
+    max_retries = 4
 
     domains.each do |domain|
-      whois = Whois.whois(domain)
-      domain_result =  (DateTime.parse(whois.expires_on.to_s) - DateTime.now).to_i
-      if domain_result <= critical_days
-        results['critical'][domain] = domain_result
-      elsif domain_result <= warning_days
-        results['warning'][domain] = domain_result
-      else
-        results['ok'] = domain_result
+      whois = Whois::Client.new(timeout: config[:timeout])
+      begin
+        tries ||= 0
+        whois_result = whois.lookup(domain)
+      rescue Timeout::Error, Errno::ECONNRESET, Whois::ConnectionError
+        tries += 1
+        tries < max_retries ? retry : next
+      end
+
+      unless whois_result.expires_on.nil?
+        domain_result = (DateTime.parse(whois_result.expires_on.to_s) - DateTime.now).to_i
+        if domain_result <= critical_days
+          results['critical'][domain] = domain_result
+        elsif domain_result <= warning_days
+          results['warning'][domain] = domain_result
+        else
+          results['ok'] = domain_result
+        end
       end
     end
     results
