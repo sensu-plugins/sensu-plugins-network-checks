@@ -28,6 +28,7 @@
  * bin/check-whois-domain-expiration-multi.rb
  * bin/check-whois-domain-expiration.rb
  * bin/metrics-interface.rb
+ * bin/metrics-interface-ssh.rb
  * bin/metrics-net.rb
  * bin/metrics-netif.rb
  * bin/metrics-netstat-tcp.rb

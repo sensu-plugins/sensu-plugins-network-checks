@@ -5,6 +5,9 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 
 ## [Unreleased]
 
+### Added
+- metrics-interface-ssh.rb: new script to collect interface metrics remotely (@CoRfr)
+
 ## [4.0.0] - 2019-04-18
 ### Breaking Changes
 - Update minimum required ruby version to 2.3. Drop unsupported ruby versions.
