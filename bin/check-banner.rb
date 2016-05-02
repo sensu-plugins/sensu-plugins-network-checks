@@ -102,7 +102,7 @@ class CheckBanner < Sensu::Plugin::Check::CLI
          description: 'Custom critical message to send'
 
   def acquire_banner(host)
-    timeout(config[:timeout]) do
+    Timeout.timeout(config[:timeout]) do
       sock = TCPSocket.new(host, config[:port])
       if config[:write]
         sock.write config[:write]
@@ -125,7 +125,7 @@ class CheckBanner < Sensu::Plugin::Check::CLI
   end
 
   def acquire_no_banner(host)
-    timeout(config[:timeout]) do
+    Timeout.timeout(config[:timeout]) do
       TCPSocket.new(host, config[:port])
     end
   rescue Errno::ECONNREFUSED

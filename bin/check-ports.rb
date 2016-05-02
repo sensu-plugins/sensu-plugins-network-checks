@@ -62,7 +62,7 @@ class CheckPort < Sensu::Plugin::Check::CLI
          default: 30
 
   def check_port(port)
-    timeout(config[:timeout]) do
+    Timeout.timeout(config[:timeout]) do
       config[:proto].casecmp('tcp').zero? ? TCPSocket.new(config[:host], port.to_i) : UDPSocket.open.connect(config[:host], port.to_i)
     end
   rescue Errno::ECONNREFUSED
