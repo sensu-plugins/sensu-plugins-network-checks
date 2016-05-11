@@ -62,10 +62,9 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
   def check_days(num_days,
                  warning_days = config[:warning].to_i,
                  critical_days = config[:critical].to_i)
-    case
-    when num_days <= critical_days
+    if num_days <= critical_days
       critical
-    when num_days <= warning_days
+    elsif num_days <= warning_days
       warning
     else
       ok
