@@ -4,16 +4,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Fixed
+- check-whois-domain-expiration-multi.rb: Handle whois errors better by retrying failed lookupsE
+- Use Timeout.timeout not deprecated Object#timeout
+
+### Added
+- check-whois-domain-expiration-multi.rb: Add timeout option
+- Support for Ruby 2.3.0
+
+### Removed
+- Support for Ruby 1.9.3
+
+### Changed
+- Update to Rubocop 0.40 and cleanup
 
 ## [0.2.4] - 2016-04-02
 ### Fixed
 - metrics-ping.rb: Fix error when a host can't be pinged. Convert to a proper metrics check.
-- check-whois-domain-expiration-multi.rb: Handle whois errors better by retrying failed lookups
 
 ### Added
 - basic check for netfilter conntrack
 - Option for newline character in write string for check-banner
-- check-whois-domain-expiration-multi.rb: Add timeout option
 
 ## [0.1.4] - 2016-01-22
 ### Added
