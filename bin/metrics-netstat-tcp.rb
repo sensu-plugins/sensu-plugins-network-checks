@@ -76,13 +76,10 @@ class NetstatTCPMetrics < Sensu::Plugin::Metric::CLI::Graphite
          long: '--port PORT',
          proc: proc(&:to_i)
 
-  def netstat(protocol = 'tcp')
-    state_counts = Hash.new(0)
-    TCP_STATES.each_pair { |_hex, name| state_counts[name] = 0 }
-
+  def netstat(protocol, pattern, state_counts)
     File.open('/proc/net/' + protocol).each do |line|
       line.strip!
-      if m = line.match(/^\s*\d+:\s+(.{8}):(.{4})\s+(.{8}):(.{4})\s+(.{2})/) # rubocop:disable AssignmentInCondition
+      if m = line.match(pattern) # rubocop:disable AssignmentInCondition
         connection_state = m[5]
         connection_port = m[2].to_i(16)
         connection_state = TCP_STATES[connection_state]
@@ -98,7 +95,16 @@ class NetstatTCPMetrics < Sensu::Plugin::Metric::CLI::Graphite
 
   def run
     timestamp = Time.now.to_i
-    netstat('tcp').each do |state, count|
+    state_counts = Hash.new(0)
+    TCP_STATES.each_pair { |_hex, name| state_counts[name] = 0 }
+
+    tcp4_pattern = /^\s*\d+:\s+(.{8}):(.{4})\s+(.{8}):(.{4})\s+(.{2})/
+    state_counts = netstat('tcp', tcp4_pattern, state_counts)
+
+    tcp6_pattern = /^\s*\d+:\s+(.{32}):(.{4})\s+(.{32}):(.{4})\s+(.{2})/
+    state_counts = netstat('tcp6', tcp6_pattern, state_counts)
+
+    state_counts.each do |state, count|
       graphite_name = config[:port] ? "#{config[:scheme]}.#{config[:port]}.#{state}" :
         "#{config[:scheme]}.#{state}"
       output graphite_name.to_s, count, timestamp
