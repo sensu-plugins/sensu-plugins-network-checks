@@ -81,7 +81,7 @@ class CheckPING < Sensu::Plugin::Check::CLI
   def run
     result = []
     pt = Net::Ping::External.new(config[:host], nil, config[:timeout])
-    
+
     config[:count].times do |i|
       sleep(config[:interval]) unless i == 0
       result[i] = config[:ipv6] ? pt.ping6 : pt.ping
