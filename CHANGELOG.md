@@ -7,6 +7,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - metrics-netstat-tcp.rb: Add IPv6 state counts
 
+### Fixed
+- check-ping.rb: Fix false positives (#34)
+
 ## [1.0.0] - 2016-06-14
 ### Fixed
 - check-whois-domain-expiration-multi.rb: Handle whois errors better by retrying failed lookups
