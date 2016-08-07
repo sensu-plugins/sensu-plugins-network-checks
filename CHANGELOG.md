@@ -4,11 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+
+## [1.1.0] - 2016-08-07
 ### Added
-- metrics-netstat-tcp.rb: Add IPv6 state counts
+- metrics-netstat-tcp.rb: Add IPv6 state counts (@mlf4aiur)
 
 ### Fixed
-- check-ping.rb: Fix false positives (#34)
+- check-ping.rb: Fix false positives (#34 via @kai101)
 
 ## [1.0.0] - 2016-06-14
 ### Fixed
@@ -149,7 +151,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 * initial release, same as community repo
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.2.4...1.0.0
 [0.2.4]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.1.4...0.2.4
 [0.1.4]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.1.3...0.1.4
