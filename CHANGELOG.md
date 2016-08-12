@@ -7,7 +7,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ### Fixed
 - metrics-netstat-tcp.rb: Option to disable IPv6 check (#44 via @MattMencel)
-- 
+
 ## [1.1.0] - 2016-08-07
 ### Added
 - metrics-netstat-tcp.rb: Add IPv6 state counts (@mlf4aiur)
