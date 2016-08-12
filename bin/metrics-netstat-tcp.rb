@@ -76,6 +76,12 @@ class NetstatTCPMetrics < Sensu::Plugin::Metric::CLI::Graphite
          long: '--port PORT',
          proc: proc(&:to_i)
 
+  option :disabletcp6,
+         description: 'Disable tcp6 check',
+         short: '-d',
+         long: '--disabletcp6',
+         boolean: true
+         
   def netstat(protocol, pattern, state_counts)
     File.open('/proc/net/' + protocol).each do |line|
       line.strip!
@@ -101,8 +107,10 @@ class NetstatTCPMetrics < Sensu::Plugin::Metric::CLI::Graphite
     tcp4_pattern = /^\s*\d+:\s+(.{8}):(.{4})\s+(.{8}):(.{4})\s+(.{2})/
     state_counts = netstat('tcp', tcp4_pattern, state_counts)
 
-    tcp6_pattern = /^\s*\d+:\s+(.{32}):(.{4})\s+(.{32}):(.{4})\s+(.{2})/
-    state_counts = netstat('tcp6', tcp6_pattern, state_counts)
+    unless config[:disabletcp6]
+      tcp6_pattern = /^\s*\d+:\s+(.{32}):(.{4})\s+(.{32}):(.{4})\s+(.{2})/
+      state_counts = netstat('tcp6', tcp6_pattern, state_counts)
+    end
 
     state_counts.each do |state, count|
       graphite_name = config[:port] ? "#{config[:scheme]}.#{config[:port]}.#{state}" :
