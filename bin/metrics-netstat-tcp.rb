@@ -81,7 +81,7 @@ class NetstatTCPMetrics < Sensu::Plugin::Metric::CLI::Graphite
          short: '-d',
          long: '--disabletcp6',
          boolean: true
-         
+
   def netstat(protocol, pattern, state_counts)
     File.open('/proc/net/' + protocol).each do |line|
       line.strip!
