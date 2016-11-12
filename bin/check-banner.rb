@@ -113,7 +113,6 @@ class CheckBanner < Sensu::Plugin::Check::CLI
 
       if config[:ssl]
         ssl_context = OpenSSL::SSL::SSLContext.new
-        ssl_context.verify_mode = OpenSSL::SSL::VERIFY_PEER
         sock = OpenSSL::SSL::SSLSocket.new(sock, ssl_context)
         sock.connect
       end
