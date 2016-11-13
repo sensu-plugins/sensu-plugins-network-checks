@@ -34,6 +34,7 @@
 #   Released under the same terms as Sensu (the MIT license); see LICENSE
 #   for details.
 
+require 'openssl'
 require 'sensu-plugin/check/cli'
 require 'socket'
 require 'timeout'
@@ -101,9 +102,21 @@ class CheckBanner < Sensu::Plugin::Check::CLI
          long: '--critmessage MESSAGE',
          description: 'Custom critical message to send'
 
+  option :ssl,
+         short: '-S',
+         long: '--ssl',
+         description: 'Enable SSL socket for secure connection'
+
   def acquire_banner(host)
     Timeout.timeout(config[:timeout]) do
       sock = TCPSocket.new(host, config[:port])
+
+      if config[:ssl]
+        ssl_context = OpenSSL::SSL::SSLContext.new
+        sock = OpenSSL::SSL::SSLSocket.new(sock, ssl_context)
+        sock.connect
+      end
+
       if config[:write]
         sock.write config[:write]
         sock.write "\n" unless config[:exclude_newline]
