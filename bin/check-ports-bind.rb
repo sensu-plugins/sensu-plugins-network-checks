@@ -4,7 +4,7 @@
 #   check-ports-bind
 #
 # DESCRIPTION:
-# Connect to a TCP/UDP address:port, to check whether open or closed.   
+# Connect to a TCP/UDP address:port, to check whether open or closed.
 # Don't use nmap since it's overkill.
 # Test UDP ports as well: Experimental
 #
@@ -40,7 +40,7 @@ require 'socket'
 require 'timeout'
 
 #
-# Check Ports by bound address 
+# Check Ports by bound address
 #
 class CheckPort < Sensu::Plugin::Check::CLI
   option(
@@ -145,7 +145,7 @@ class CheckPort < Sensu::Plugin::Check::CLI
     end
     array = []
     portbinds.each do |port|
-      check_port(port,array)
+      check_port(port, array)
     end
     multiplier = 1
     multiplier = 2 if config[:hard] == true
