@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+- Added check-ports-bind.rb
 
 ### Fixed
 - metrics-netstat-tcp.rb: Option to disable IPv6 check (#44 via @MattMencel)
@@ -35,7 +36,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [0.2.4] - 2016-04-02
 ### Fixed
-- metrics-ping.rb: Fix error when a host can't be pinged. Convert to a proper metrics check.
+- metrics-ping.rb: Fix error when a host cannot be pinged. Convert to a proper metrics check.
 
 ### Added
 - basic check for netfilter conntrack

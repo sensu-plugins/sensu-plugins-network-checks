@@ -16,6 +16,7 @@
  * bin/check-ping.rb
  * bin/check-ports-nmap.rb
  * bin/check-ports.rb
+ * bin/check-ports-bind.rb
  * bin/check-rbl.rb
  * bin/check-socat.rb
  * bin/check-whois-domain-expiration-multi.rb
