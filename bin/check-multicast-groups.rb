@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 #
-#   check-multicasr-groups
+#   check-multicast-groups
 #
 # DESCRIPTION:
 #   This plugin checks if specific multicast groups are configured
