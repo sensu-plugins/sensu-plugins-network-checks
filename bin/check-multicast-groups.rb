@@ -64,7 +64,7 @@ class CheckMulticastGroups < Sensu::Plugin::Check::CLI
     expected = Set.new(targets)
 
     diff = expected.difference(actual)
-    if diff.size > 0 # rubocop:disable Style/ZeroLengthPredicate
+    unless diff.empty?
       diff_output = diff.map { |iface, addr| "#{iface}\t#{addr}" }.join("\n")
       critical "#{diff.size} missing multicast group(s):\n#{diff_output}"
     end
