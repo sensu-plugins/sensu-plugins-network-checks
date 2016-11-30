@@ -51,7 +51,7 @@ class CheckMulticastGroups < Sensu::Plugin::Check::CLI
   def run
     targets = settings['check-multicast-groups'] ||= []
     extras = load_config(config[:config])['check-multicast-groups'] || []
-    targets.deep_merge(extras)
+    targets = targets.concat(extras).uniq
 
     critical 'No target muticast groups are specified.' if targets.empty?
 
