@@ -37,8 +37,13 @@ class NetIFMetrics < Sensu::Plugin::Metric::CLI::Graphite
          long: '--scheme SCHEME',
          default: Socket.gethostname.to_s
 
+  option :interval,
+         description: 'Interval to collect metrics over',
+         long: '--interval INTERVAL',
+         default: 1
+
   def run
-    `sar -n DEV 1 1 | grep Average | grep -v IFACE`.each_line do |line|
+    `sar -n DEV #{config[:interval]} 1 | grep Average | grep -v IFACE`.each_line do |line|
       stats = line.split(/\s+/)
       unless stats.empty?
         stats.shift
