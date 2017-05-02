@@ -44,17 +44,20 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
          short: '-w DAYS',
          long: '--warn DAYS',
          default: 30,
+         proc: proc(&:to_i),
          description: 'Warn if fewer than DAYS away'
 
   option :critical,
          short: '-c DAYS',
          long: '--critical DAYS',
+         proc: proc(&:to_i),
          default: 7,
          description: 'Critical if fewer than DAYS away'
 
   option :timeout,
          short: '-t SECONDS',
          long: '--timeout SECONDS',
+         proc: proc(&:to_i),
          default: 10,
          description: 'Timeout for whois lookup'
 
