@@ -11,6 +11,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Fixed
 - metrics-netstat-tcp.rb: Option to disable IPv6 check (#44 via @MattMencel)
 - check-multicast-groups.rb: Fix undefined method deep_merge for []:Array
+- check-whois-domain-expiration-multi.rb does not fail as timeout is cast to integer
 
 ### Changed
 - check-banner.rb: Option to enable SSL socket for secure connection
