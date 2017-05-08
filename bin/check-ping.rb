@@ -98,6 +98,10 @@ class CheckPING < Sensu::Plugin::Check::CLI
       failure_message = "ICMP ping unsuccessful for host: #{config[:host]} (successful: #{successful_count}/#{total_count})"
 
       if config[:report]
+        mtr = `mtr --help`
+        if mtr == 1
+          unknown 'mtr is not available in $PATH'
+        end
         report = `mtr --curses --report-cycles=1 --report --no-dns #{config[:host]}`
         failure_message = failure_message + "\n" + report
       end
