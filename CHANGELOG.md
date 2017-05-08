@@ -9,6 +9,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - Added interval option to metrics-netif.rb (@Evesy)
 - metrics-netif.rb: expose average-key option that is used to `grep` to more easily handle locale issues (@majormoses)
 - metrics-netif.rb: unknown if it can not find `sar` in its `$PATH` (@majormoses)
+- check-ping.rb: unknown if using `--reports` and do not have `mtr` installed and in "$PATH" (@majormoses)
 
 ### Fixed
 - metrics-netstat-tcp.rb: Option to disable IPv6 check (#44 via @MattMencel)
