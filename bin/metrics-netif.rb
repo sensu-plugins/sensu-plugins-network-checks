@@ -42,8 +42,17 @@ class NetIFMetrics < Sensu::Plugin::Metric::CLI::Graphite
          long: '--interval INTERVAL',
          default: 1
 
+  option :average_key,
+         description: 'This key is used to `grep` for a key that corresponds to average. useful for different locales',
+         long: '--average-key',
+         default: 'Average'
+
   def run
-    `sar -n DEV #{config[:interval]} 1 | grep Average | grep -v IFACE`.each_line do |line|
+    sar = `sar -n DEV #{config[:interval]} 1 | grep #{config[:average_key]} | grep -v IFACE`
+    if sar.nil? || sar.empty?
+      unknown 'sar is not installed or in $PATH'
+    end
+    sar.each_line do |line|
       stats = line.split(/\s+/)
       unless stats.empty?
         stats.shift

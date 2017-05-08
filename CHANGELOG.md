@@ -5,13 +5,15 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 ### Added
-- Added check-ports-bind.rb
-- Added interval option to metrics-netif.rb
+- Added check-ports-bind.rb (@hanynowsky)
+- Added interval option to metrics-netif.rb (@Evesy)
+- metrics-netif.rb: expose average-key option that is used to `grep` to more easily handle locale issues (@majormoses)
+- metrics-netif.rb: unknown if it can not find `sar` in its `$PATH` (@majormoses)
 
 ### Fixed
 - metrics-netstat-tcp.rb: Option to disable IPv6 check (#44 via @MattMencel)
-- check-multicast-groups.rb: Fix undefined method deep_merge for []:Array
-- check-whois-domain-expiration-multi.rb does not fail as timeout is cast to integer
+- check-multicast-groups.rb: Fix undefined method deep_merge for []:Array (@maoe)
+- check-whois-domain-expiration-multi.rb does not fail as timeout is cast to integer (@majormoses)
 
 ### Changed
 - check-banner.rb: Option to enable SSL socket for secure connection
