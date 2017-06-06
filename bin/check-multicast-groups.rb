@@ -49,10 +49,7 @@ class CheckMulticastGroups < Sensu::Plugin::Check::CLI
          description: 'Path to a config file'
 
   def run
-    targets = settings['check-multicast-groups'] ||= []
-    extras = load_config(config[:config])['check-multicast-groups'] || []
-    targets = targets.concat(extras).uniq
-
+    targets = load_config(config[:config])['check-multicast-groups'] || []
     critical 'No target muticast groups are specified.' if targets.empty?
 
     iface_pat = /[a-zA-Z0-9\.]+/
