@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Breaking Changes
+- check-multicast-groups.rb: Stop loading system wide settings from `settings['check-multicast-groups']` and use only the config specified as `-c` (#57 via @maoe)
+
 ## [1.2.0] - 2017-06-07
 ### Added
 - Added check-ports-bind.rb (@hanynowsky)
