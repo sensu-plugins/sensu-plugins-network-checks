@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+
+## [2.0.0] 2017-06-07
 ### Breaking Changes
 - check-multicast-groups.rb: Stop loading system wide settings from `settings['check-multicast-groups']` and use only the config specified as `-c` (#57 via @maoe)
 
@@ -169,7 +171,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 * initial release, same as community repo
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/1.2.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/1.2.0...2.0.0
 [1.2.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/0.2.4...1.0.0
