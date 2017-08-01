@@ -27,6 +27,7 @@
 
 require 'sensu-plugin/check/cli'
 require 'whois'
+require 'whois-parser'
 
 #
 # Check Whois domain expiration
@@ -74,7 +75,7 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
   def initialize
     super()
     whois = Whois.whois(config[:domain])
-    @expires_on = DateTime.parse(whois.expires_on.to_s)
+    @expires_on = DateTime.parse(whois.parser.expires_on.to_s)
     @num_days = (@expires_on - DateTime.now).to_i
   end
 
