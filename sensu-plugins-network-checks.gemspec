@@ -34,6 +34,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'sensu-plugin',  '~> 1.2'
   s.add_runtime_dependency 'net-ping',      '1.7.8'
   s.add_runtime_dependency 'whois',         '3.6.3'
+  s.add_runtime_dependency 'whois-ruby',    '~> 4.0'
   s.add_runtime_dependency 'activesupport', '~> 4.2'
 
   s.add_development_dependency 'bundler',                   '~> 1.7'
