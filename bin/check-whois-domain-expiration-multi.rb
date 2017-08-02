@@ -29,6 +29,7 @@
 
 require 'sensu-plugin/check/cli'
 require 'whois'
+require 'whois-parser'
 
 #
 # Check Whois domain expiration
@@ -86,7 +87,7 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
       whois = Whois::Client.new(timeout: config[:timeout])
       begin
         tries ||= 0
-        whois_result = whois.lookup(domain)
+        whois_result = whois.lookup(domain).parser
       rescue Timeout::Error, Errno::ECONNRESET, Whois::ConnectionError
         tries += 1
         tries < max_retries ? retry : next
