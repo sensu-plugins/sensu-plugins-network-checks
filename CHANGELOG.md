@@ -9,6 +9,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ### Fixed
 - misc changelog na PR template fixes (@majormoses)
+- check-whois-domain-expiration.rb: "Check failed to run: invalid date" caused by a change to the whois gem which removed the parser from the main repository (issue #59) (@akatch)
 
 ## [2.0.0] 2017-06-07
 ### Breaking Changes
