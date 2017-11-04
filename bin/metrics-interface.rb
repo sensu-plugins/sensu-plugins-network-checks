@@ -43,6 +43,12 @@ class InterfaceGraphite < Sensu::Plugin::Metric::CLI::Graphite
          long: '--exclude-interface',
          proc: proc { |a| a.split(',') }
 
+  option :includeinterface,
+         description: 'List of interfaces to include',
+         short: '-i INTERFACE[,INTERFACE]',
+         long: '--include-interface',
+         proc: proc { |a| a.split(',') }
+
   def run
     # Metrics borrowed from hoardd: https://github.com/coredump/hoardd
 
@@ -66,6 +72,7 @@ class InterfaceGraphite < Sensu::Plugin::Metric::CLI::Graphite
     File.open('/proc/net/dev', 'r').each_line do |line|
       interface, stats_string = line.scan(/^\s*([^:]+):\s*(.*)$/).first
       next if config[:excludeinterface] && config[:excludeinterface].find { |x| line.match(x) }
+      next if config[:includeinterface] && !(config[:includeinterface].find { |x| line.match(x) })
       next unless interface
       if interface.is_a?(String)
         interface = interface.tr('.', '_')
