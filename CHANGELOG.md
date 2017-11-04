@@ -5,6 +5,11 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 
+
+## [2.0.2] - 2017-11-03
+### Added
+- metrics-interface.rb: Option to listen to specfic interface. (@parin921996)
+
 ## [2.0.1] - 2017-08-01
 ### Added
 - ruby 2.4 testing to travis (@majormoses)
