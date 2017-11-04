@@ -6,7 +6,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## [Unreleased]
 
 
-## [2.0.2] - 2017-11-03
+## [2.1.0] - 2017-11-03
 ### Added
 - metrics-interface.rb: Option to listen to specfic interface. (@parin921996)
 
@@ -184,7 +184,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 * initial release, same as community repo
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/2.0.1...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/2.1.0...HEAD
+[2.1.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/2.0.1...2.1.0
 [2.0.1]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/1.2.0...2.0.0
 [1.2.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/1.1.0...1.2.0
