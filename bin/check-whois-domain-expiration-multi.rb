@@ -102,6 +102,8 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
         else
           results['ok'] = domain_result
         end
+      else
+        results['critical'][domain] = domain_result
       end
     end
     results
