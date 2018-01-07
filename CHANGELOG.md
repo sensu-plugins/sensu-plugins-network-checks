@@ -5,6 +5,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 
+### Fixed
+- check-whois-domain-expiration-multi.rb: report a `critical` error on a domain that it gets back an empty expires_on. (@edgan)
 
 ## [2.1.0] - 2017-11-03
 ### Added
