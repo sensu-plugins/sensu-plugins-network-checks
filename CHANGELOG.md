@@ -5,6 +5,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 
+## [2.1.1] - 2018-01-06
 ### Fixed
 - check-whois-domain-expiration-multi.rb: report a `critical` error on a domain that it gets back an empty expires_on. (@edgan)
 
@@ -186,7 +187,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 * initial release, same as community repo
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/2.1.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/2.1.1...HEAD
+[2.1.1]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/2.0.1...2.1.0
 [2.0.1]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/1.2.0...2.0.0
