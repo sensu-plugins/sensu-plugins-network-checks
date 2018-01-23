@@ -94,10 +94,10 @@ class CheckPort < Sensu::Plugin::Check::CLI
     okarray = []
     hosts.each do |host|
       ports.each do |port|
-        okarray << 'ok' if check_port port,host
+        okarray << 'ok' if check_port port, host
       end
     end
-    if okarray.size == ports.size*hosts.size
+    if okarray.size == ports.size * hosts.size
       ok "All ports (#{config[:ports]}) are accessible for hosts #{config[:hosts]}"
     else
       warning "port count or pattern #{config[:pattern]} does not match" unless config[:crit_message]
