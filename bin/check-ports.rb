@@ -36,10 +36,10 @@ require 'timeout'
 # Check Banner
 #
 class CheckPort < Sensu::Plugin::Check::CLI
-  option :host,
+  option :hosts,
          short: '-H HOSTNAME',
          long: '--hostname HOSTNAME',
-         description: 'Host to connect to',
+         description: 'Hosts to connect to, comma separated',
          default: '0.0.0.0'
 
   option :ports,
@@ -61,18 +61,18 @@ class CheckPort < Sensu::Plugin::Check::CLI
          proc: proc(&:to_i),
          default: 30
 
-  def check_port(port)
+  def check_port(port, host)
     Timeout.timeout(config[:timeout]) do
-      config[:proto].casecmp('tcp').zero? ? TCPSocket.new(config[:host], port.to_i) : UDPSocket.open.connect(config[:host], port.to_i)
+      config[:proto].casecmp('tcp').zero? ? TCPSocket.new(host, port.to_i) : UDPSocket.open.connect(host, port.to_i)
     end
   rescue Errno::ECONNREFUSED
-    critical "Connection refused by #{config[:host]}:#{port}"
+    critical "Connection refused by #{host}:#{port}"
   rescue Timeout::Error
-    critical "Connection or read timed out (#{config[:host]}:#{port})"
+    critical "Connection or read timed out (#{host}:#{port})"
   rescue Errno::EHOSTUNREACH
-    critical "Check failed to run: No route to host (#{config[:host]}:#{port})"
+    critical "Check failed to run: No route to host (#{host}:#{port})"
   rescue EOFError
-    critical "Connection closed unexpectedly (#{config[:host]}:#{port})"
+    critical "Connection closed unexpectedly (#{host}:#{port})"
   end
 
   def run
@@ -86,12 +86,19 @@ class CheckPort < Sensu::Plugin::Check::CLI
         port
       end
     end
-    okarray = []
-    ports.each do |port|
-      okarray << 'ok' if check_port port
+
+    hosts = config[:hosts].split(',').flat_map do |host|
+      host
     end
-    if okarray.size == ports.size
-      ok "All ports (#{config[:ports]}) are accessible for host #{config[:host]}"
+
+    okarray = []
+    hosts.each do |host|
+      ports.each do |port|
+        okarray << 'ok' if check_port port,host
+      end
+    end
+    if okarray.size == ports.size*hosts.size
+      ok "All ports (#{config[:ports]}) are accessible for hosts #{config[:hosts]}"
     else
       warning "port count or pattern #{config[:pattern]} does not match" unless config[:crit_message]
     end
