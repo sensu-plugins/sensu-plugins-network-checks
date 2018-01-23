@@ -33,10 +33,10 @@
 **check-ports**
 This check now uses a TCPSocket, not nmap (see next below)
 ```
-check-ports.rb -h 0.0.0.0 -p 22,25,3030 -t 30
+check-ports.rb -h 0.0.0.0,1.2.3.4 -p 22,25,3030 -t 30
 
 Usage: bin/check-ports.rb (options)
-    -H, --hostnames HOSTNAME         Host to connect to
+    -H, --hostnames HOSTNAME         Hosts to connect to
     -p, --ports PORTS                Ports to check, comma separated
     -t, --timeout SECS               Connection timeout
 ```
