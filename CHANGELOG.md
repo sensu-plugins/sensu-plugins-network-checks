@@ -5,6 +5,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 
+### Fixed
+- check-whois-domain-expiration-multi.rb: fixed an issue causing the script to crash by accessing a variable before assignment and should return the raw `whois` result so it can be used to troubleshoot issue with infrastructure or monitoring script (@majormoses)
+
 ## [2.1.1] - 2018-01-06
 ### Fixed
 - check-whois-domain-expiration-multi.rb: report a `critical` error on a domain that it gets back an empty expires_on. (@edgan)
