@@ -94,7 +94,7 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
       end
 
       if whois_result.expires_on.nil?
-        results['critical'][domain] = domain_result
+        results['critical'][domain] = whois_result
       else
         domain_result = (DateTime.parse(whois_result.expires_on.to_s) - DateTime.now).to_i
         if domain_result <= critical_days
