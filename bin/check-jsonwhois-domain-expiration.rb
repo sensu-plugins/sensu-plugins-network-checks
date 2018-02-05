@@ -61,6 +61,21 @@ class JSONWhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
          default: 7,
          description: 'Critical if a domain expires in fewer than DAYS days'
 
+  option :'ignore-errors',
+         short: '-i',
+         long: '--ignore-errors',
+         boolean: true,
+         default: false,
+         description: 'Ignore connection or parsing errors'
+
+  option :'report-errors',
+         short: '-r LEVEL',
+         long: '--report-errors LEVEL',
+         proc: proc(&:to_sym),
+         in: %i(unknown warning critical),
+         default: :unknown,
+         description: 'Level for reporting connection or parsing errors'
+
   option :help,
          short: '-h',
          long: '--help',
@@ -96,7 +111,7 @@ class JSONWhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
           results[:ok][domain] = domain_result
         end
       rescue
-        results[:unknown][domain] = 'Connection or parsing error'
+        results[:unknown][domain] = 'Connection or parsing error' unless config[:'ignore-errors']
       end
     end
     results
@@ -127,9 +142,9 @@ class JSONWhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
     unknown_results = results[:unknown].map { |u, v| "#{u} (#{v})" }
     message warn_results.concat(unknown_results).join(', ')
 
-    if !results[:critical].empty?
+    if !results[:critical].empty? || (!results[:unknown].empty? && config[:'report-errors'] == :critical)
       critical
-    elsif !results[:warning].empty?
+    elsif !results[:warning].empty? || (!results[:unknown].empty? && config[:'report-errors'] == :warning)
       warning
     elsif !results[:unknown].empty?
       unknown

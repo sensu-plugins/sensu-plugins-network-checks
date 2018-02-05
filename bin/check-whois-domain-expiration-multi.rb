@@ -55,6 +55,21 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
          default: 7,
          description: 'Critical if fewer than DAYS away'
 
+  option :'ignore-errors',
+         short: '-i',
+         long: '--ignore-errors',
+         boolean: true,
+         default: false,
+         description: 'Ignore connection or parsing errors'
+
+  option :'report-errors',
+         short: '-r LEVEL',
+         long: '--report-errors LEVEL',
+         proc: proc(&:to_sym),
+         in: %i(unknown warning critical),
+         default: :unknown,
+         description: 'Level for reporting connection or parsing errors'
+
   option :timeout,
          short: '-t SECONDS',
          long: '--timeout SECONDS',
@@ -96,7 +111,7 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
         if tries < max_retries
           retry
         else
-          results[:unknown][domain] = 'Connection error'
+          results[:unknown][domain] = 'Connection error' unless config[:'ignore-errors']
           next
         end
       end
@@ -112,7 +127,7 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
           results[:ok][domain] = domain_result
         end
       rescue
-        results[:unknown][domain] = 'Parsing error'
+        results[:unknown][domain] = 'Parsing error' unless config[:'ignore-errors']
       end
     end
     results
@@ -125,9 +140,9 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
     unknown_results = results[:unknown].map { |u, v| "#{u} (#{v})" }
     message warn_results.concat(unknown_results).join(', ')
 
-    if !results[:critical].empty?
+    if !results[:critical].empty? || (!results[:unknown].empty? && config[:'report-errors'] == :critical)
       critical
-    elsif !results[:warning].empty?
+    elsif !results[:warning].empty? || (!results[:unknown].empty? && config[:'report-errors'] == :warning)
       warning
     elsif !results[:unknown].empty?
       unknown
