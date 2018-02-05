@@ -77,19 +77,26 @@ class JSONWhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
     domains = config[:domain].split(',')
     warning_days = config[:warning].to_i
     critical_days = config[:critical].to_i
-    results = {}
-    results['critical'] = {}
-    results['warning'] = {}
-    results['ok'] = {}
+    results = {
+      critical: {},
+      warning: {},
+      ok: {},
+      unknown: {}
+    }
 
     domains.each do |domain|
-      domain_result = (get_domain_expiration(domain) - DateTime.now).to_i
-      if domain_result <= critical_days
-        results['critical'][domain] = domain_result
-      elsif domain_result <= warning_days
-        results['warning'][domain] = domain_result
-      else
-        results['ok'] = domain_result
+      begin
+        expires_on = get_domain_expiration(domain)
+        domain_result = (expires_on - DateTime.now).to_i
+        if domain_result <= critical_days
+          results[:critical][domain] = domain_result
+        elsif domain_result <= warning_days
+          results[:warning][domain] = domain_result
+        else
+          results[:ok][domain] = domain_result
+        end
+      rescue
+        results[:unknown][domain] = 'Connection or parsing error'
       end
     end
     results
@@ -109,15 +116,23 @@ class JSONWhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
       http.request(req)
     end
 
-    DateTime.parse(JSON.parse(res.body)['expires_on'])
+    json = JSON.parse(res.body)
+    DateTime.parse(json['expires_on'])
   end
 
   def run
-    status = expiration_results
-    if !status['critical'].empty?
-      critical status['critical'].map { |u, v| "#{u} days left:#{v}" }.join(',')
-    elsif !status['warning'].empty?
-      warning status['warning'].map { |u, v| "#{u} days left:#{v}" }.join(',')
+    results = expiration_results
+
+    warn_results = results[:critical].merge(results[:warning]).map { |u, v| "#{u} (#{v} days left)" }
+    unknown_results = results[:unknown].map { |u, v| "#{u} (#{v})" }
+    message warn_results.concat(unknown_results).join(', ')
+
+    if !results[:critical].empty?
+      critical
+    elsif !results[:warning].empty?
+      warning
+    elsif !results[:unknown].empty?
+      unknown
     else
       ok 'No domains expire in the near term'
     end
