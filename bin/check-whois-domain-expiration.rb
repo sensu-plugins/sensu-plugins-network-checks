@@ -75,5 +75,7 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
     else
       ok
     end
+  rescue
+    unknown "#{config[:domain]} can't be checked"
   end
 end
