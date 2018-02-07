@@ -9,6 +9,7 @@
 
 ## Files
  * bin/check-banner.rb
+ * bin/check-netfilter-conntrack.rb
  * bin/check-jsonwhois-domain-expiration.rb
  * bin/check-mtu.rb
  * bin/check-multicast-groups.rb
