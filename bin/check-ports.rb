@@ -92,7 +92,7 @@ class CheckPort < Sensu::Plugin::Check::CLI
     okarray = []
     hosts.each do |host|
       ports.each do |port|
-        okarray << 'ok' if check_port port, host
+        okarray << 'ok' if check_port(port, host)
       end
     end
     if okarray.size == ports.size * hosts.size
