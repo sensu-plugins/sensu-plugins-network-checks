@@ -87,9 +87,7 @@ class CheckPort < Sensu::Plugin::Check::CLI
       end
     end
 
-    hosts = config[:hosts].split(',').flat_map do |host|
-      host
-    end
+    hosts = config[:hosts].split(',')
 
     okarray = []
     hosts.each do |host|
