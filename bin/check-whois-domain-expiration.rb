@@ -60,27 +60,22 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
          show_options: true,
          exit: 0
 
-  def check_days(num_days,
-                 warning_days = config[:warning].to_i,
-                 critical_days = config[:critical].to_i)
-    if num_days <= critical_days
+  def run
+    whois = Whois.whois(config[:domain])
+
+    expires_on = DateTime.parse(whois.parser.expires_on.to_s)
+    num_days = (expires_on - DateTime.now).to_i
+
+    message "#{config[:domain]} expires on #{expires_on.strftime('%m-%d-%Y')} (#{num_days} days away)"
+
+    if num_days <= config[:warning].to_i
       critical
-    elsif num_days <= warning_days
+    elsif num_days <= config[:critical].to_i
       warning
     else
       ok
     end
-  end
-
-  def initialize
-    super()
-    whois = Whois.whois(config[:domain])
-    @expires_on = DateTime.parse(whois.parser.expires_on.to_s)
-    @num_days = (@expires_on - DateTime.now).to_i
-  end
-
-  def run
-    message "#{config[:domain]} expires on #{@expires_on.strftime('%m-%d-%Y')} (#{@num_days} days away)"
-    check_days @num_days
+  rescue
+    unknown "#{config[:domain]} can't be checked"
   end
 end
