@@ -58,5 +58,7 @@ class CheckNetfilterConntrack < Sensu::Plugin::Check::CLI
     critical if percentage >= config[:critical]
     warning if percentage >= config[:warning]
     ok
+  rescue
+    warning "Can't read conntrack information."
   end
 end
