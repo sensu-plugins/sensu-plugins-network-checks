@@ -48,9 +48,17 @@ class CheckNetfilterConntrack < Sensu::Plugin::Check::CLI
          default: 90,
          proc: proc(&:to_i)
 
+  def nf_conntrack_max
+    File.read('/proc/sys/net/netfilter/nf_conntrack_max').to_i
+  end
+
+  def nf_conntrack_count
+    File.read('/proc/sys/net/netfilter/nf_conntrack_count').to_i
+  end
+
   def run
-    max = File.read('/proc/sys/net/netfilter/nf_conntrack_max').to_i
-    count = File.read('/proc/sys/net/netfilter/nf_conntrack_count').to_i
+    max = nf_conntrack_max
+    count = nf_conntrack_count
     percentage = (count.to_f / max.to_f) * 100
 
     message "Table is at #{percentage.round(1)}% (#{count}/#{max})"
