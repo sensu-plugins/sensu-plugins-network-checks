@@ -1,4 +1,6 @@
 #! /usr/bin/env ruby
+# frozen_string_literal: true
+
 #
 # metrics-ping
 #
@@ -69,8 +71,8 @@ class PingMetrics < Sensu::Plugin::Metric::CLI::Graphite
          long: '--timeout TIMEOUT',
          default: 5
 
-  OVERVIEW_METRICS = [:packets_transmitted, :packets_received, :packet_loss, :time].freeze
-  STATISTIC_METRICS = [:min, :avg, :max, :mdev].freeze
+  OVERVIEW_METRICS = %i[packets_transmitted packets_received packet_loss time].freeze
+  STATISTIC_METRICS = %i[min avg max mdev].freeze
   FLOAT = '(\d+\.\d+)'.freeze
 
   def overview

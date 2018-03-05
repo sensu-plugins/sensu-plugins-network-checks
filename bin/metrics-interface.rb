@@ -1,5 +1,6 @@
 #! /usr/bin/env ruby
-#  encoding: UTF-8
+# frozen_string_literal: true
+
 #
 #   interface-metrics
 #
@@ -52,7 +53,7 @@ class InterfaceGraphite < Sensu::Plugin::Metric::CLI::Graphite
   def run
     # Metrics borrowed from hoardd: https://github.com/coredump/hoardd
 
-    metrics = %w(rxBytes
+    metrics = %w[rxBytes
                  rxPackets
                  rxErrors
                  rxDrops
@@ -67,7 +68,7 @@ class InterfaceGraphite < Sensu::Plugin::Metric::CLI::Graphite
                  txFifo
                  txColls
                  txCarrier
-                 txCompressed)
+                 txCompressed]
 
     File.open('/proc/net/dev', 'r').each_line do |line|
       interface, stats_string = line.scan(/^\s*([^:]+):\s*(.*)$/).first

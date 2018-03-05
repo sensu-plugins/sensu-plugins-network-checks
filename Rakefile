@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'bundler/gem_tasks'
 require 'github/markup'
 require 'redcarpet'
@@ -7,12 +9,12 @@ require 'yard'
 require 'yard/rake/yardoc_task'
 
 desc 'Don\'t run Rubocop for unsupported versions'
-args = [:spec, :make_bin_executable, :yard, :rubocop, :check_binstubs]
+args = %i[spec make_bin_executable yard rubocop check_binstubs]
 
 YARD::Rake::YardocTask.new do |t|
-  OTHER_PATHS = %w().freeze
+  OTHER_PATHS = %w[].freeze
   t.files = ['lib/**/*.rb', 'bin/**/*.rb', OTHER_PATHS]
-  t.options = %w(--markup-provider=redcarpet --markup=markdown --main=README.md --files CHANGELOG.md)
+  t.options = %w[--markup-provider=redcarpet --markup=markdown --main=README.md --files CHANGELOG.md]
 end
 
 RuboCop::RakeTask.new

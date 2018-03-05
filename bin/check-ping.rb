@@ -1,4 +1,6 @@
 #! /usr/bin/env ruby
+# frozen_string_literal: true
+
 #
 #  check-ping
 #
@@ -83,7 +85,7 @@ class CheckPING < Sensu::Plugin::Check::CLI
     pt = Net::Ping::External.new(config[:host], nil, config[:timeout])
 
     config[:count].times do |i|
-      sleep(config[:interval]) unless i == 0
+      sleep(config[:interval]) unless i.zero?
       result[i] = config[:ipv6] ? pt.ping6 : pt.ping
     end
 

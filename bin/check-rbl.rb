@@ -1,4 +1,6 @@
 #! /usr/bin/env ruby
+# frozen_string_literal: true
+
 #
 #   check-rbl
 #
@@ -89,7 +91,7 @@ class RblCheck < Sensu::Plugin::Check::CLI
 
     # YELLOW
     unless msg_string.empty? # rubocop:disable UnlessElse
-      if criticality > 0
+      if criticality.positive?
         critical "#{ip_add} Blacklisted in#{msg_string}"
       else
         warning "#{ip_add} Blacklisted in#{msg_string}"

@@ -1,4 +1,6 @@
 #! /usr/bin/env ruby
+# frozen_string_literal: false
+
 #
 #   check-multicast-groups
 #
@@ -66,7 +68,7 @@ class CheckMulticastGroups < Sensu::Plugin::Check::CLI
       critical "#{diff.size} missing multicast group(s):\n#{diff_output}"
     end
     ok
-  rescue => ex
+  rescue StandardError => ex
     critical "Failed to check multicast groups: #{ex}"
   end
 end

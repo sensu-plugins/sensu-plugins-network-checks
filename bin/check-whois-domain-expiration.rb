@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
-# encoding: utf-8
+# frozen_string_literal: false
+
 #
 #   check-whois-domain-expiration
 #
@@ -63,6 +64,7 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
   def run
     whois = Whois.whois(config[:domain])
 
+    # TODO: figure out which to use `Date` or `Time`
     expires_on = DateTime.parse(whois.parser.expires_on.to_s)
     num_days = (expires_on - DateTime.now).to_i
 
@@ -75,7 +77,7 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
     else
       ok
     end
-  rescue
+  rescue StandardError
     unknown "#{config[:domain]} can't be checked"
   end
 end
