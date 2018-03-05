@@ -5,6 +5,15 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 
 ## [Unreleased]
 
+### Security
+- updated rubocop dependency to `~> 0.51.0` per: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8418. (@majormoses)
+
+### Breaking Changes
+- removed ruby `< 2.1` support (@majormoses)
+
+### Changed
+- appeased the cops and updated cop config (@majormoses)
+
 ## [2.3.1] - 2018-02-28
 ### Changed
 - update whois-parser gem dependency to version 1.0.1 (@amdprophet)

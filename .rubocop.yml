@@ -34,3 +34,23 @@ Style/Next:
 
 Style/MultilineTernaryOperator:
   Enabled: false
+
+# safe navigation was introduced in ruby 2.3
+Style/SafeNavigation:
+  Enabled: false
+
+# match?() was added in ruby 2.4
+Performance/RegexpMatch:
+  Enabled: false
+
+
+# TODO: figure out which to use `Date` or `Time`
+Style/DateTime:
+  Enabled: false
+
+
+# testing can be slow
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - 'test/**/*.rb'

@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
-# encoding: utf-8
+# frozen_string_literal: false
+
 #
 #   check-whois-domain-expiration-multi
 #
@@ -66,7 +67,7 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
          short: '-r LEVEL',
          long: '--report-errors LEVEL',
          proc: proc(&:to_sym),
-         in: %i(unknown warning critical),
+         in: %i[unknown warning critical],
          default: :unknown,
          description: 'Level for reporting connection or parsing errors'
 
@@ -126,7 +127,7 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
         else
           results[:ok][domain] = domain_result
         end
-      rescue
+      rescue StandardError
         results[:unknown][domain] = 'Parsing error' unless config[:'ignore-errors']
       end
     end

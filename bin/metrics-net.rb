@@ -1,4 +1,6 @@
 #! /usr/bin/env ruby
+# frozen_string_literal: true
+
 #
 #   metrics-net
 #
@@ -91,7 +93,7 @@ class LinuxPacketMetrics < Sensu::Plugin::Metric::CLI::Graphite
 
       begin
         if_speed = File.open(iface_path + '/speed').read.strip
-      rescue
+      rescue StandardError
         if_speed = 0
       end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.configure do |c|
   # XXX: Sensu plugins run in the context of an at_exit handler. This prevents
   # XXX: code-under-test from being run at the end of the rspec suite.

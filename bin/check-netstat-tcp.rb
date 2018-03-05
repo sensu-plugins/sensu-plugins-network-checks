@@ -1,4 +1,6 @@
 #! /usr/bin/env ruby
+# frozen_string_literal: true
+
 #
 #   check-netstat-tcp
 #
@@ -102,7 +104,7 @@ class CheckNetstatTCP < Sensu::Plugin::Check::CLI
   end
 
   def run
-    state_counts = netstat(%w(tcp tcp6))
+    state_counts = netstat(%w[tcp tcp6])
     is_critical = false
     is_warning = false
     message = ''
