@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 #
 #   check-netfilter-conntrack
 #
@@ -66,7 +68,7 @@ class CheckNetfilterConntrack < Sensu::Plugin::Check::CLI
     critical if percentage >= config[:critical]
     warning if percentage >= config[:warning]
     ok
-  rescue
+  rescue StandardError
     warning "Can't read conntrack information."
   end
 end
