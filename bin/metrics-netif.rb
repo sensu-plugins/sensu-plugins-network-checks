@@ -46,7 +46,7 @@ class NetIFMetrics < Sensu::Plugin::Metric::CLI::Graphite
 
   option :average_key,
          description: 'This key is used to `grep` for a key that corresponds to average. useful for different locales',
-         long: '--average-key',
+         long: '--average-key AVERAGE_KEY',
          default: 'Average'
 
   def run
