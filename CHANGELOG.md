@@ -5,6 +5,9 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 
 ## [Unreleased]
 
+### Fixed
+- metrics-netif.rb: allow you to actually pass in a value for `--average-key` (@scones)
+
 ## [3.1.1] - 2018-03-27
 ### Security
 - updated yard dependency to `~> 0.9.11` per: https://nvd.nist.gov/vuln/detail/CVE-2017-17042 (@majormoses)
