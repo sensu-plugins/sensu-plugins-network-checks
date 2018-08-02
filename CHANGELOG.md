@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+## [3.1.3] - 2018-08-02
+### Added
+ - metrics-net.rb: allow including only interfaces whos status is `up` (@johannagnarsson)
 
 ## [3.1.2] - 2018-06-10
 ### Fixed
