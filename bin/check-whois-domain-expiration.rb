@@ -70,9 +70,9 @@ class WhoisDomainExpirationCheck < Sensu::Plugin::Check::CLI
 
     message "#{config[:domain]} expires on #{expires_on.strftime('%m-%d-%Y')} (#{num_days} days away)"
 
-    if num_days <= config[:warning].to_i
+    if num_days <= config[:critical].to_i
       critical
-    elsif num_days <= config[:critical].to_i
+    elsif num_days <= config[:warning].to_i
       warning
     else
       ok
