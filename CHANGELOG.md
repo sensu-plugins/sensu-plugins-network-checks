@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+### Fixed
+- check-whois-domain-expiration.rb: corrected warn and critical flag value parsing per: https://github.com/sensu-plugins/sensu-plugins-network-checks/issues/81 (@aww-yiss)
 
 ## [3.2.0] - 2018-08-06
 ### Added
