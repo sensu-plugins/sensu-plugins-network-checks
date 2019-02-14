@@ -32,7 +32,7 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
   s.version                = SensuPluginsNetworkChecks::Version::VER_STRING
 
-  s.add_runtime_dependency 'sensu-plugin',  '~> 1.2'
+  s.add_runtime_dependency 'sensu-plugin',  '>= 1.2', '< 4.0'
 
   s.add_runtime_dependency 'activesupport', '~> 4.2'
   s.add_runtime_dependency 'dnsbl-client',  '1.0.2'
