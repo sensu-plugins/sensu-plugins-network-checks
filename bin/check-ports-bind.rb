@@ -21,12 +21,12 @@
 # USAGE:
 #
 # Ports are comma separated and support ranges
-# ./check-ports.rb -p 127.0.0.1:22,46.20.205.10 --hard --warn
-# ./check-ports.rb -p 127.0.0.1:22,46.20.205.10:80
+# ./check-ports.rb -p 127.0.0.1:22,46.20.205.10 --warn
+# ./check-ports.rb -p 127.0.0.1:22,127.0.0.1:1812/udp,46.20.205.10:389/both
 # If you mention a port without the bind address then the default address is : 0.0.0.0
 #
 # NOTES:
-# By default, checks for openssh on localhost port 22
+# By default, checks for openssh on localhost port 22 (TCP)
 #
 #
 # LICENSE:
@@ -45,15 +45,6 @@ require 'timeout'
 #
 class CheckPort < Sensu::Plugin::Check::CLI
   option(
-    :hard,
-    short: '-d',
-    long: '--hard',
-    description: 'Check given ports on both, TCP & UDP',
-    boolean: true,
-    default: false
-
-  )
-  option(
     :host,
     short: '-H HOSTNAME',
     long: '--hostname HOSTNAME',
@@ -65,7 +56,7 @@ class CheckPort < Sensu::Plugin::Check::CLI
     :portbinds,
     short: '-p PORTS',
     long: '--portbinds PORTS',
-    description: 'different address:port to check, comma separated (0.0.0.0:22,localhost:25,127.0.0.0.1:8100-8131,192.168.0.12:3030)',
+    description: 'different address:port/protocol to check, comma separated (0.0.0.0:22,localhost:25/tcp,127.0.0.0.1:8100-8131/udp,192.168.0.12:3030/both)',
     default: '0.0.0.0:22'
   )
 
@@ -105,53 +96,101 @@ class CheckPort < Sensu::Plugin::Check::CLI
     end
   end
 
-  # Check address:port
-  def check_port(portbind, okays)
-    address = portbind.split(':')[0]
-    port = portbind.split(':')[1]
-    Timeout.timeout(config[:timeout]) do
-      connection = TCPSocket.new(address, port.to_i)
-      p connection if config[:debug]
-      okays.push("TCP-#{portbind}")
-    end
-    if config[:hard]
-      Timeout.timeout(config[:timeout]) do
-        s = UDPSocket.new
-        s.connect(address, port.to_i)
-        s.close
-        okays.push("UDP-#{portbind}")
+  # Ports to check
+  def portbinds
+    binds = []
+
+    config[:portbinds].split(',').each do |portbind|
+      portbind = "#{config[:host]}:#{portbind}" unless portbind.include?(':')
+      portbind = "#{portbind}/tcp" unless portbind.include?('/')
+
+      protocol     = portbind.split('/')[1] || 'tcp'
+      address_port = portbind.split('/')[0]
+      address      = address_port.split(':')[0]
+      port         = address_port.split(':')[1].to_i
+
+      if port =~ /^[0-9]+(-[0-9]+)$/
+        # Port range
+
+        first_port, last_port = port.split('-')
+        (first_port.to_i..last_port.to_i).each do |p|
+          binds += portbind_hashs(address, p, protocol)
+        end
+      else
+        # Single port
+
+        binds += portbind_hashs(address, port, protocol)
       end
     end
+
+    binds
+  end
+
+  def portbind_hashs(address, port, protocol)
+    if protocol == 'both'
+      [
+        { address: address, port: port, protocol: 'tcp' },
+        { address: address, port: port, protocol: 'udp' }
+      ]
+    else
+      [{ address: address, port: port, protocol: protocol }]
+    end
+  end
+
+  # Portbind hash to string
+  def portbind_to_s(portbind)
+    "#{portbind[:address]}:#{portbind[:port]}/#{portbind[:protocol]}"
+  end
+
+  # Check TCP port
+  def check_tcp_port(portbind, okays)
+    Timeout.timeout(config[:timeout]) do
+      connection = TCPSocket.new(portbind[:address], portbind[:port])
+      p connection if config[:debug]
+      okays.push(portbind_to_s(portbind))
+    end
+  end
+
+  # Check UDP port
+  def check_udp_port(portbind, okays)
+    Timeout.timeout(config[:timeout]) do
+      s = UDPSocket.new
+      s.connect(portbind[:address], portbind[:port])
+      s.close
+      okays.push(portbind_to_s(portbind))
+    end
+  end
+
+  # Check address:port/protocol
+  def check_port(portbind, okays)
+    case portbind[:protocol].downcase
+    when 'tcp'
+      check_tcp_port(portbind, okays)
+    when 'udp'
+      check_udp_port(portbind, okays)
+    else
+      severity(config[:warn], "Unsupported protocol #{portbind_to_s(portbind)}")
+    end
   rescue Errno::ECONNREFUSED
-    severity(config[:warn], "Connection refused by #{portbind}")
+    severity(config[:warn], "Connection refused by #{portbind_to_s(portbind)}")
   rescue Timeout::Error
-    severity(config[:warn], "Connection or read timed out (#{portbind})")
+    severity(config[:warn], "Connection or read timed out (#{portbind_to_s(portbind)})")
   rescue Errno::EHOSTUNREACH
-    severity(config[:warn], "Check failed to run: No route to host (#{portbind})")
+    severity(config[:warn], "Check failed to run: No route to host (#{portbind_to_s(portbind)})")
   rescue EOFError
-    severity(config[:warn], "Connection closed unexpectedly (#{portbind})")
+    severity(config[:warn], "Connection closed unexpectedly (#{portbind_to_s(portbind)})")
   end
 
   def run
-    portbinds = config[:portbinds].split(',').flat_map do |port_bind|
-      port_bind = "#{config[:host]}:#{port_bind}" unless port_bind.include? ':'
-      # Port range
-      if port_bind.split(',')[1] =~ /^[0-9]+(-[0-9]+)$/
-        first_port, last_port = port_bind.split('-')
-        (first_port.to_i..last_port.to_i).to_a
-        # Single port
-      else
-        port_bind
-      end
+    ports = portbinds
+    okays = []
+
+    ports.each do |portbind|
+      check_port(portbind, okays)
     end
-    array = []
-    portbinds.each do |port|
-      check_port(port, array)
-    end
-    multiplier = 1
-    multiplier = 2 if config[:hard] == true
-    if array.size == portbinds.size * multiplier
-      ok "All ports (#{config[:portbinds]}) are reachable - HARD: #{config[:hard]} => SUCCESS: #{array}"
+
+    if okays.size == ports.size
+      ok "All ports (#{config[:portbinds]}) are reachable: #{okays.join(', ')}"
     else
       severity(config[:warn], 'port count or pattern does not match')
     end
