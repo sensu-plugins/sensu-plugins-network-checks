@@ -7,6 +7,15 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 ### Changed
 - check-ports-bind.rb: Removed "--hard" option in favour of specifying the protocol to check for each port individually
 
+## [4.0.0] - 2019-04-18
+### Breaking Changes
+- Update minimum required ruby version to 2.3. Drop unsupported ruby versions.
+- Bump `sensu-plugin` dependency from `~> 1.2` to `~> 4.0` you can read the changelog entries for [4.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#400---2018-02-17), [3.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#300---2018-12-04), and [2.0](https://github.com/sensu-plugins/sensu-plugin/blob/master/CHANGELOG.md#v200---2017-03-29)
+
+### Added
+- Travis build automation to generate Sensu Asset tarballs that can be used n conjunction with Sensu provided ruby runtime assets and the Bonsai Asset Index
+- Require latest sensu-plugin for [Sensu Go support](https://github.com/sensu-plugins/sensu-plugin#sensu-go-enablement)
+
 ## [3.2.1] - 2018-08-31
 ### Fixed
 - check-whois-domain-expiration.rb: corrected warn and critical flag value parsing per: https://github.com/sensu-plugins/sensu-plugins-network-checks/issues/81 (@aww-yiss)
@@ -234,7 +243,8 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 
 * initial release, same as community repo
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/3.2.1...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/4.0.0...HEAD
+[4.0.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/3.2.1...4.0.0
 [3.2.1]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/3.2.0...3.2.1
 [3.2.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/3.1.2...3.2.0
 [3.1.2]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/3.1.1...3.1.2
