@@ -5,7 +5,7 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 
 ## [Unreleased]
 ### Changed
-- check-ports-bind.rb: Removed "--hard" option in favour of specifying the protocol to check for each port individually
+- check-ports-bind.rb: Allow to specify the protocol to check for each port individually (address:port/proto)
 
 ## [4.0.0] - 2019-04-18
 ### Breaking Changes

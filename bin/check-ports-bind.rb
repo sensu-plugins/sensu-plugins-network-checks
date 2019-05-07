@@ -21,7 +21,8 @@
 # USAGE:
 #
 # Ports are comma separated and support ranges
-# ./check-ports.rb -p 127.0.0.1:22,46.20.205.10 --warn
+# ./check-ports.rb -p 127.0.0.1:22,46.20.205.10 --hard --warn
+# ./check-ports.rb -p 127.0.0.1:22,46.20.205.10:80
 # ./check-ports.rb -p 127.0.0.1:22,127.0.0.1:1812/udp,46.20.205.10:389/both
 # If you mention a port without the bind address then the default address is : 0.0.0.0
 #
@@ -44,6 +45,15 @@ require 'timeout'
 # Check Ports by bound address
 #
 class CheckPort < Sensu::Plugin::Check::CLI
+  option(
+    :hard,
+    short: '-d',
+    long: '--hard',
+    description: 'Check given ports on both, TCP & UDP, if no explicit protocol is set',
+    boolean: true,
+    default: false
+  )
+
   option(
     :host,
     short: '-H HOSTNAME',
@@ -98,13 +108,14 @@ class CheckPort < Sensu::Plugin::Check::CLI
 
   # Ports to check
   def portbinds
+    default_protocol = config[:hard] ? 'both' : 'tcp'
     binds = []
 
     config[:portbinds].split(',').each do |portbind|
       portbind = "#{config[:host]}:#{portbind}" unless portbind.include?(':')
-      portbind = "#{portbind}/tcp" unless portbind.include?('/')
+      portbind = "#{portbind}/#{default_protocol}" unless portbind.include?('/')
 
-      protocol     = portbind.split('/')[1] || 'tcp'
+      protocol     = portbind.split('/')[1] || default_protocol
       address_port = portbind.split('/')[0]
       address      = address_port.split(':')[0]
       port         = address_port.split(':')[1].to_i
