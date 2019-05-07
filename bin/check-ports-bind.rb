@@ -125,19 +125,19 @@ class CheckPort < Sensu::Plugin::Check::CLI
 
         first_port, last_port = port.split('-')
         (first_port.to_i..last_port.to_i).each do |p|
-          binds += portbind_hashs(address, p, protocol)
+          binds += portbindings(address, p, protocol)
         end
       else
         # Single port
 
-        binds += portbind_hashs(address, port, protocol)
+        binds += portbindings(address, port, protocol)
       end
     end
 
     binds
   end
 
-  def portbind_hashs(address, port, protocol)
+  def portbindings(address, port, protocol)
     if protocol == 'both'
       [
         { address: address, port: port, protocol: 'tcp' },
