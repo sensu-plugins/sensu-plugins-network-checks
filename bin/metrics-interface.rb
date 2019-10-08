@@ -83,7 +83,7 @@ class InterfaceGraphite < Sensu::Plugin::Metric::CLI::Graphite
     File.open('/proc/net/dev', 'r').each_line do |line|
       interface, stats_string = line.scan(/^\s*([^:]+):\s*(.*)$/).first
       next if config[:excludeinterfaceregex] && (interface =~ /#{config[:excludeinterfaceregex]}/)
-      next if config[:includeinterfaceregex] && !(interface =~ /#{config[:includeinterfaceregex]}/)
+      next if config[:includeinterfaceregex] && (interface !~ /#{config[:includeinterfaceregex]}/)
       next if config[:excludeinterface] && config[:excludeinterface].find { |x| line.match(x) }
       next if config[:includeinterface] && !(config[:includeinterface].find { |x| line.match(x) })
       next unless interface
