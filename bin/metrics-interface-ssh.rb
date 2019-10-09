@@ -41,6 +41,16 @@ class InterfaceGraphite < Sensu::Plugin::Metric::CLI::Graphite
          short: '-s SCHEME',
          long: '--scheme SCHEME'
 
+  option :excludeinterfaceregex,
+         description: 'Regex matching interfaces to exclude',
+         short: '-X INTERFACE',
+         long: '--exclude-interface-regex'
+
+  option :includeinterfaceregex,
+         description: 'Regex matching interfaces to include',
+         short: '-I INTERFACE',
+         long: '--include-interface-regex'
+
   option :excludeinterface,
          description: 'List of interfaces to exclude',
          short: '-x INTERFACE[,INTERFACE]',
@@ -106,6 +116,8 @@ class InterfaceGraphite < Sensu::Plugin::Metric::CLI::Graphite
 
     output.each_line do |line|
       interface, stats_string = line.scan(/^\s*([^:]+):\s*(.*)$/).first
+      next if config[:excludeinterfaceregex] && (interface =~ /#{config[:excludeinterfaceregex]}/)
+      next if config[:includeinterfaceregex] && (interface !~ /#{config[:includeinterfaceregex]}/)
       next if config[:excludeinterface] && config[:excludeinterface].find { |x| line.match(x) }
       next if config[:includeinterface] && !(config[:includeinterface].find { |x| line.match(x) })
       next unless interface
