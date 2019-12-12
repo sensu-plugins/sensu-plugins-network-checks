@@ -5,6 +5,9 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 
 ## [Unreleased]
 
+### Added
+- Updated asset build targets to support centos6
+
 ## [4.0.0] - 2019-04-18
 ### Breaking Changes
 - Update minimum required ruby version to 2.3. Drop unsupported ruby versions.
