@@ -5,6 +5,11 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 
 ## [Unreleased]
 
+## [4.1.1] - 2019-12-18
+### Changed
+- Updated README to conform with standardization guidelines (sensu-plugins/community#134)
+- Updated bundler development depedency to '~> 2.1'
+
 ## [4.1.0] - 2019-012-12
 ### Added
 - Updated asset build targets to support centos6
@@ -245,7 +250,8 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 
 * initial release, same as community repo
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/4.1.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/4.1.1...HEAD
+[4.1.1]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/4.0.0...4.1.1
 [4.1.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/4.0.0...4.1.0
 [4.0.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/3.2.1...4.0.0
 [3.2.1]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/3.2.0...3.2.1
