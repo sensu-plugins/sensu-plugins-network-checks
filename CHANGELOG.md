@@ -4,11 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
-### Update metrics-interfaces.rb
-- Add `-X`, `--exclude-interfaces-regex` and `-I`, `--include-interfaces-regex` as alternative to `-x` and `-i`. Fixes [How can I filter out all veth* interfaces.](https://github.com/sensu-plugins/sensu-plugins-network-checks/issues/112)
+### Added 
+- Add `-X`, `--exclude-interfaces-regex` and `-I`, `--include-interfaces-regex` as alternative to `-x` and `-i`.
 
 ### Breaking Changes
 - Added hostname to default metric scheme.
+- Added support to choose between local and remote port metrics. Defaults to local.  Metric scheme extended to indicate local or remote.
 
 ### Changed
 - Removed centos build from bonsai.yml
