@@ -14,6 +14,7 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 ### Changed
 - Updated net-ping runtime dependancy to '2.0.6' 
 - Removed centos build from bonsai.yml
+- Updated whois-parser to ~> 1.2
 
 ## [4.1.1] - 2019-12-18
 ### Changed
