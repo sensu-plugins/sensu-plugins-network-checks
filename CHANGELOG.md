@@ -20,6 +20,7 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 ### Changed
 - Updated README to conform with standardization guidelines (sensu-plugins/community#134)
 - Updated bundler development depedency to '~> 2.1'
+- Removed codeclimate development dependency
 
 ## [4.1.0] - 2019-012-12
 ### Added
