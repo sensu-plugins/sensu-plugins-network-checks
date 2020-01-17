@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+### Update metrics-interfaces.rb
+- Add `-X`, `--exclude-interfaces-regex` and `-I`, `--include-interfaces-regex` as alternative to `-x` and `-i`. Fixes [How can I filter out all veth* interfaces.](https://github.com/sensu-plugins/sensu-plugins-network-checks/issues/112)
+
 ### Breaking Changes
 - Added hostname to default metric scheme.
 
