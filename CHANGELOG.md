@@ -13,6 +13,7 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 
 ### Changed
 - Updated net-ping runtime dependancy to '2.0.6' 
+- Updated rake development dependancy to '~> 12.3'
 - Removed centos build from bonsai.yml
 - Updated whois-parser to ~> 1.2
 
