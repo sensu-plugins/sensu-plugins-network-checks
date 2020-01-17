@@ -4,6 +4,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+### Added 
+- Add `-X`, `--exclude-interfaces-regex` and `-I`, `--include-interfaces-regex` as alternative to `-x` and `-i`.
+
+### Breaking Changes
+- Added hostname to default metric scheme.
+- Added support to choose between local and remote port metrics. Defaults to local.  Metric scheme extended to indicate local or remote.
+
+### Changed
+- Updated net-ping runtime dependancy to '2.0.6' 
+- Removed centos build from bonsai.yml
 - Updated whois-parser to ~> 1.2
 
 ## [4.1.1] - 2019-12-18
