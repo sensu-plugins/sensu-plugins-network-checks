@@ -35,7 +35,7 @@ class MetricsSockstat < Sensu::Plugin::Metric::CLI::Graphite
          description: 'Metric naming scheme, text to prepend to $protocol.$field',
          long: '--scheme SCHEME',
          short: '-s SCHEME',
-         default: 'network.sockets'
+         default: "#{Socket.gethostname}.network.sockets"
 
   def output_metric(name, value)
     output "#{@config[:scheme]}.#{name} #{value} #{@timestamp}"

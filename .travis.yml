@@ -3,6 +3,8 @@ services:
 - docker
 cache:
 - bundler
+before_install:
+- gem install bundler
 install:
 - bundle install
 rvm:
