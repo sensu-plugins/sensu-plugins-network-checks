@@ -7,6 +7,21 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 ### Update metrics-interfaces.rb
 - Add `-X`, `--exclude-interfaces-regex` and `-I`, `--include-interfaces-regex` as alternative to `-x` and `-i`. Fixes [How can I filter out all veth* interfaces.](https://github.com/sensu-plugins/sensu-plugins-network-checks/issues/112)
 
+### Breaking Changes
+- Added hostname to default metric scheme.
+
+### Changed
+- Removed centos build from bonsai.yml
+
+## [4.1.1] - 2019-12-18
+### Changed
+- Updated README to conform with standardization guidelines (sensu-plugins/community#134)
+- Updated bundler development depedency to '~> 2.1'
+
+## [4.1.0] - 2019-012-12
+### Added
+- Updated asset build targets to support centos6
+
 ## [4.0.0] - 2019-04-18
 ### Breaking Changes
 - Update minimum required ruby version to 2.3. Drop unsupported ruby versions.
@@ -243,7 +258,9 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 
 * initial release, same as community repo
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/4.0.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/4.1.1...HEAD
+[4.1.1]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/4.0.0...4.1.1
+[4.1.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/4.0.0...4.1.0
 [4.0.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/3.2.1...4.0.0
 [3.2.1]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/3.2.0...3.2.1
 [3.2.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/3.1.2...3.2.0
