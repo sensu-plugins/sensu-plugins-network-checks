@@ -35,7 +35,7 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.add_runtime_dependency 'sensu-plugin',  '~> 4.0'
 
   s.add_runtime_dependency 'activesupport', '~> 4.2'
-  s.add_runtime_dependency 'dnsbl-client',  '1.0.2'
+  s.add_runtime_dependency 'dnsbl-client',  '1.0.4'
   s.add_runtime_dependency 'net-ping',      '2.0.6'
   s.add_runtime_dependency 'whois',         '>= 4.0'
   s.add_runtime_dependency 'whois-parser',  '~> 1.2'
