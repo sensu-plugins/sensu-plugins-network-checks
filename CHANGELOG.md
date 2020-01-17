@@ -12,6 +12,7 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 - Added support to choose between local and remote port metrics. Defaults to local.  Metric scheme extended to indicate local or remote.
 
 ### Changed
+- Updated net-ping runtime dependancy to '2.0.6' 
 - Removed centos build from bonsai.yml
 
 ## [4.1.1] - 2019-12-18
