@@ -41,7 +41,6 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.add_runtime_dependency 'whois-parser',  '~> 1.0.0'
 
   s.add_development_dependency 'bundler',                   '~> 2.1'
-  s.add_development_dependency 'codeclimate-test-reporter', '~> 1.0'
   s.add_development_dependency 'github-markup',             '~> 3.0'
   s.add_development_dependency 'pry',                       '~> 0.10'
   s.add_development_dependency 'rake',                      '~> 10.0'
