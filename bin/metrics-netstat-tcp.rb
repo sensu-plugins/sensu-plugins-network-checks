@@ -78,6 +78,12 @@ class NetstatTCPMetrics < Sensu::Plugin::Metric::CLI::Graphite
          long: '--port PORT',
          proc: proc(&:to_i)
 
+  option :type,
+         description: 'Specify the type of the port to get metrics for: Local (default)  or remote',
+         short: '-t local|remote',
+         long: '--type local|remote',
+         default: 'local'
+
   option :disabletcp6,
          description: 'Disable tcp6 check',
          short: '-d',
@@ -89,7 +95,13 @@ class NetstatTCPMetrics < Sensu::Plugin::Metric::CLI::Graphite
       line.strip!
       if m = line.match(pattern) # rubocop:disable AssignmentInCondition
         connection_state = m[5]
-        connection_port = m[2].to_i(16)
+        if config[:type] == 'local'
+          connection_port = m[2].to_i(16)
+        elsif config[:type] == 'remote'
+          connection_port = m[4].to_i(16)
+        else
+          unknown "Unknown type level #{config[:type]}. Available values are: local, remote."
+        end
         connection_state = TCP_STATES[connection_state]
         if config[:port] && config[:port] == connection_port
           state_counts[connection_state] += 1
@@ -115,7 +127,7 @@ class NetstatTCPMetrics < Sensu::Plugin::Metric::CLI::Graphite
     end
 
     state_counts.each do |state, count|
-      graphite_name = config[:port] ? "#{config[:scheme]}.#{config[:port]}.#{state}" :
+      graphite_name = config[:port] ? "#{config[:scheme]}.#{config[:port]}.#{config[:type]}.#{state}" :
         "#{config[:scheme]}.#{state}"
       output graphite_name.to_s, count, timestamp
     end
