@@ -40,8 +40,8 @@ Style/SafeNavigation:
   Enabled: false
 
 # match?() was added in ruby 2.4
-Performance/RegexpMatch:
-  Enabled: false
+#Performance/RegexpMatch:
+#  Enabled: false
 
 
 # TODO: figure out which to use `Date` or `Time`
