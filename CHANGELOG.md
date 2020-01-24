@@ -19,6 +19,7 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 - Updated rubocop dependency to '~> 0.79.0'
 - Reconciled issues identified by updating rubocop
 - Updated rake requirement to '~> 13.0'
+- Updated rdoc requirement to '~> 6.2.0'
 
 ## [4.1.1] - 2019-12-18
 ### Changed
