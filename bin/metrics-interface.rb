@@ -87,6 +87,7 @@ class InterfaceGraphite < Sensu::Plugin::Metric::CLI::Graphite
       next if config[:excludeinterface] && config[:excludeinterface].find { |x| line.match(x) }
       next if config[:includeinterface] && !(config[:includeinterface].find { |x| line.match(x) })
       next unless interface
+
       if interface.is_a?(String)
         interface = interface.tr('.', '_')
       end

@@ -51,8 +51,8 @@ class CheckPort < Sensu::Plugin::Check::CLI
     description: 'Check given ports on both, TCP & UDP',
     boolean: true,
     default: false
-
   )
+
   option(
     :host,
     short: '-H HOSTNAME',

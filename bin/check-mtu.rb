@@ -85,5 +85,4 @@ class CheckMTU < Sensu::Plugin::Check::CLI
     ok_message = "#{mtu} matches #{required_mtu}"
     ok ok_message
   end
-  # rubocop:enable Metrics/AbcSize
 end
