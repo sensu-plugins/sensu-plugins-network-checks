@@ -4,18 +4,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
-### Added 
-- Add `-X`, `--exclude-interfaces-regex` and `-I`, `--include-interfaces-regex` as alternative to `-x` and `-i`.
-
+## [5.0.0] 2020-01-26
 ### Breaking Changes
-- Added hostname to default metric scheme.
-- Added support to choose between local and remote port metrics. Defaults to local.  Metric scheme extended to indicate local or remote.
+- `metrics-sockstat.rb`: Added hostname to default metric scheme.
+- `metrics-netstat-tcp.rb`: Added support to choose between local and remote port metrics. Defaults to local.  Metric scheme extended to indicate local or remote.
+
+### Added
+- `metrics-interface.rb`: options to include or exclude interfaces via regex. `-X`, `--exclude-interfaces-regex` and `-I`, `--include-interfaces-regex` as alternative to `-x` and `-i`.
+- `check-ports-bind.rb`: Allow to specify the protocol to check for each port individually (address:port/proto)
+
 
 ### Changed
-- Updated net-ping runtime dependancy to '2.0.6' 
+- Updated net-ping runtime dependancy to '2.0.6'
 - Updated rake development dependancy to '~> 12.3'
 - Removed centos build from bonsai.yml
-- check-ports-bind.rb: Allow to specify the protocol to check for each port individually (address:port/proto)
 - Updated whois-parser to ~> 1.2
 - Updated rubocop dependency to '~> 0.79.0'
 - Reconciled issues identified by updating rubocop
@@ -268,7 +270,8 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 
 * initial release, same as community repo
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/4.1.1...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/5.0.0...HEAD
+[5.0.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/4.1.1...5.0.0
 [4.1.1]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/4.0.0...4.1.1
 [4.1.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/4.0.0...4.1.0
 [4.0.0]: https://github.com/sensu-plugins/sensu-plugins-network-checks/compare/3.2.1...4.0.0
