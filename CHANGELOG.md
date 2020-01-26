@@ -15,6 +15,7 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 - Updated net-ping runtime dependancy to '2.0.6' 
 - Updated rake development dependancy to '~> 12.3'
 - Removed centos build from bonsai.yml
+- check-ports-bind.rb: Allow to specify the protocol to check for each port individually (address:port/proto)
 - Updated whois-parser to ~> 1.2
 - Updated rubocop dependency to '~> 0.79.0'
 - Reconciled issues identified by updating rubocop

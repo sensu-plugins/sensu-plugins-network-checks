@@ -1,6 +1,6 @@
 language: ruby
 services:
-- docker        
+- docker
 cache:
 - bundler
 before_install:
@@ -21,7 +21,7 @@ script:
 - gem build sensu-plugins-network-checks.gemspec
 - gem install sensu-plugins-network-checks-*.gem
 before_deploy:
-- bash -c "[ ! -d bonsai/ ] && git clone https://github.com/sensu/sensu-go-bonsai-asset.git bonsai || echo 'bonsai/ exists, skipping git clone'"        
+- bash -c "[ ! -d bonsai/ ] && git clone https://github.com/sensu/sensu-go-bonsai-asset.git bonsai || echo 'bonsai/ exists, skipping git clone'"
 deploy:
 - provider: rubygems
   api_key:
@@ -40,4 +40,3 @@ deploy:
     tags: true
     all_branches: true
     rvm: 2.4.1
-    
