@@ -55,7 +55,7 @@ class MetricsSockstat < Sensu::Plugin::Metric::CLI::Graphite
   end
 
   def read_sockstat
-    return IO.read('/proc/net/sockstat')
+    IO.read('/proc/net/sockstat')
   rescue StandardError => e
     unknown "Failed to read /proc/net/sockstat: #{e}"
   end

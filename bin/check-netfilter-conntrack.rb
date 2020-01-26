@@ -61,7 +61,7 @@ class CheckNetfilterConntrack < Sensu::Plugin::Check::CLI
   def run
     max = nf_conntrack_max
     count = nf_conntrack_count
-    percentage = (count.to_f / max.to_f) * 100
+    percentage = (count / max.to_f) * 100
 
     message "Table is at #{percentage.round(1)}% (#{count}/#{max})"
 

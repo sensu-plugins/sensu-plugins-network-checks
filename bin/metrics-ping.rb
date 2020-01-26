@@ -73,7 +73,7 @@ class PingMetrics < Sensu::Plugin::Metric::CLI::Graphite
 
   OVERVIEW_METRICS = %i[packets_transmitted packets_received packet_loss time].freeze
   STATISTIC_METRICS = %i[min avg max mdev].freeze
-  FLOAT = '(\d+\.\d+)'.freeze
+  FLOAT = '(\d+\.\d+)'
 
   def overview
     @ping.split("\n")[-2].scan(/^(\d+) packets transmitted, (\d+) received, (\d+)% packet loss, time (\d+)ms/)[0]

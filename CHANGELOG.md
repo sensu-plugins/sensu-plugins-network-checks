@@ -12,13 +12,21 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 - Added support to choose between local and remote port metrics. Defaults to local.  Metric scheme extended to indicate local or remote.
 
 ### Changed
+- Updated net-ping runtime dependancy to '2.0.6' 
+- Updated rake development dependancy to '~> 12.3'
 - Removed centos build from bonsai.yml
 - check-ports-bind.rb: Allow to specify the protocol to check for each port individually (address:port/proto)
+- Updated whois-parser to ~> 1.2
+- Updated rubocop dependency to '~> 0.79.0'
+- Reconciled issues identified by updating rubocop
+- Updated rake requirement to '~> 13.0'
+- Updated rdoc requirement to '~> 6.2.0'
 
 ## [4.1.1] - 2019-12-18
 ### Changed
 - Updated README to conform with standardization guidelines (sensu-plugins/community#134)
 - Updated bundler development depedency to '~> 2.1'
+- Removed codeclimate development dependency
 
 ## [4.1.0] - 2019-012-12
 ### Added

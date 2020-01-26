@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'date'
@@ -18,10 +18,10 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.files                  = Dir.glob('{bin,lib}/**/*') + %w[LICENSE README.md CHANGELOG.md]
   s.homepage               = 'https://github.com/sensu-plugins/sensu-plugins-network-checks'
   s.license                = 'MIT'
-  s.metadata               = { 'maintainer'         => 'sensu-plugin',
+  s.metadata               = { 'maintainer' => 'sensu-plugin',
                                'development_status' => 'active',
-                               'production_status'  => 'unstable - testing recommended',
-                               'release_draft'      => 'false',
+                               'production_status' => 'unstable - testing recommended',
+                               'release_draft' => 'false',
                                'release_prerelease' => 'false' }
   s.name                   = 'sensu-plugins-network-checks'
   s.platform               = Gem::Platform::RUBY
@@ -35,19 +35,18 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.add_runtime_dependency 'sensu-plugin',  '~> 4.0'
 
   s.add_runtime_dependency 'activesupport', '~> 4.2'
-  s.add_runtime_dependency 'dnsbl-client',  '1.0.2'
-  s.add_runtime_dependency 'net-ping',      '1.7.8'
+  s.add_runtime_dependency 'dnsbl-client',  '1.0.4'
+  s.add_runtime_dependency 'net-ping',      '2.0.6'
   s.add_runtime_dependency 'whois',         '>= 4.0'
-  s.add_runtime_dependency 'whois-parser',  '~> 1.0.0'
+  s.add_runtime_dependency 'whois-parser',  '~> 1.2'
 
   s.add_development_dependency 'bundler',                   '~> 2.1'
-  s.add_development_dependency 'codeclimate-test-reporter', '~> 0.4'
   s.add_development_dependency 'github-markup',             '~> 3.0'
   s.add_development_dependency 'pry',                       '~> 0.10'
-  s.add_development_dependency 'rake',                      '~> 10.0'
-  s.add_development_dependency 'rdoc',                      '~> 5.1.0'
+  s.add_development_dependency 'rake',                      '~> 13.0'
+  s.add_development_dependency 'rdoc',                      '~> 6.2.0'
   s.add_development_dependency 'redcarpet',                 '~> 3.2'
   s.add_development_dependency 'rspec',                     '~> 3.1'
-  s.add_development_dependency 'rubocop',                   '~> 0.51.0'
+  s.add_development_dependency 'rubocop',                   '~> 0.79.0'
   s.add_development_dependency 'yard',                      '~> 0.9.11'
 end

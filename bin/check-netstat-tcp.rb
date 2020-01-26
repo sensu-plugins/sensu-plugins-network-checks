@@ -92,6 +92,7 @@ class CheckNetstatTCP < Sensu::Plugin::Check::CLI
           connection_port = m[2].to_i(16)
           connection_state = TCP_STATES[connection_state]
           next unless config[:states].include?(connection_state)
+
           if config[:port] && config[:port] == connection_port
             state_counts[connection_state] += 1
           elsif !config[:port]
