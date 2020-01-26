@@ -100,10 +100,26 @@ class CheckPort < Sensu::Plugin::Check::CLI
   # Severity switcher
   def severity(warn, text)
     if warn
-      warning text.to_s
+      warning(text.to_s)
     else
-      critical text.to_s
+      critical(text.to_s)
     end
+  end
+
+  # Check valid port number
+  def valid_port?(port)
+    return false unless port =~ /^[0-9]+$/
+
+    (0..65_535).include?(port.to_i)
+  end
+
+  # Check valid port range
+  def valid_port_range?(port)
+    return false unless port =~ /^[0-9]+-[0-9]+$/
+
+    port_start, port_end = port.split('-', 2)
+
+    valid_port?(port_start) && valid_port?(port_end) && port_start.to_i <= port_end.to_i
   end
 
   # Ports to check
@@ -118,19 +134,21 @@ class CheckPort < Sensu::Plugin::Check::CLI
       protocol     = portbind.split('/')[1] || default_protocol
       address_port = portbind.split('/')[0]
       address      = address_port.split(':')[0]
-      port         = address_port.split(':')[1].to_i
+      port         = address_port.split(':')[1]
 
-      if port =~ /^[0-9]+(-[0-9]+)$/
+      if valid_port_range?(port)
         # Port range
 
-        first_port, last_port = port.split('-')
+        first_port, last_port = port.split('-', 2)
         (first_port.to_i..last_port.to_i).each do |p|
           binds += portbindings(address, p, protocol)
         end
-      else
+      elsif valid_port?(port)
         # Single port
 
         binds += portbindings(address, port, protocol)
+      else
+        critical("Invalid port or port range: #{port}")
       end
     end
 
