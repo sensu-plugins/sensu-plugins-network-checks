@@ -21,7 +21,7 @@ script:
 - gem build sensu-plugins-network-checks.gemspec
 - gem install sensu-plugins-network-checks-*.gem
 before_deploy:
-- bash -c "[ ! -d bonsai/ ] && git clone https://github.com/sensu/sensu-go-bonsai-asset.git bonsai || echo 'bonsai/ exists, skipping git clone'"
+- bash -c "[ ! -d bonsai/ ] && git clone https://github.com/sensu/sensu-go-bonsai-asset.git bonsai || echo 'bonsai/ exists, skipping git clone'; cp asset_build_scripts/Dockerfile.* bonsai/ruby-runtime/"
 deploy:
 - provider: rubygems
   api_key:
@@ -34,7 +34,7 @@ deploy:
     rvm: 2.4.1
     repo: sensu-plugins/sensu-plugins-network-checks
 - provider: script
-  script: bonsai/ruby-runtime/travis-build-ruby-plugin-assets.sh sensu-plugins-network-checks
+  script: bonsai/ruby-runtime/travis-build-ruby-plugin-assets.sh sensu-plugins-network-checks  alpine,debian,centos6,centos7,centos8
   skip_cleanup: true
   on:
     tags: true
