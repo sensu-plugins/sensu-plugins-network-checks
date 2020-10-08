@@ -38,6 +38,16 @@ class InterfaceGraphite < Sensu::Plugin::Metric::CLI::Graphite
          long: '--scheme SCHEME',
          default: "#{Socket.gethostname}.interface"
 
+  option :excludeinterfaceregex,
+         description: 'Regex matching interfaces to exclude',
+         short: '-X INTERFACE',
+         long: '--exclude-interface-regex'
+
+  option :includeinterfaceregex,
+         description: 'Regex matching interfaces to include',
+         short: '-I INTERFACE',
+         long: '--include-interface-regex'
+
   option :excludeinterface,
          description: 'List of interfaces to exclude',
          short: '-x INTERFACE[,INTERFACE]',
@@ -72,9 +82,12 @@ class InterfaceGraphite < Sensu::Plugin::Metric::CLI::Graphite
 
     File.open('/proc/net/dev', 'r').each_line do |line|
       interface, stats_string = line.scan(/^\s*([^:]+):\s*(.*)$/).first
+      next if config[:excludeinterfaceregex] && (interface =~ /#{config[:excludeinterfaceregex]}/)
+      next if config[:includeinterfaceregex] && (interface !~ /#{config[:includeinterfaceregex]}/)
       next if config[:excludeinterface] && config[:excludeinterface].find { |x| line.match(x) }
       next if config[:includeinterface] && !(config[:includeinterface].find { |x| line.match(x) })
       next unless interface
+
       if interface.is_a?(String)
         interface = interface.tr('.', '_')
       end

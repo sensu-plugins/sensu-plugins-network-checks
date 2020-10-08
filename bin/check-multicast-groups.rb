@@ -68,7 +68,7 @@ class CheckMulticastGroups < Sensu::Plugin::Check::CLI
       critical "#{diff.size} missing multicast group(s):\n#{diff_output}"
     end
     ok
-  rescue StandardError => ex
-    critical "Failed to check multicast groups: #{ex}"
+  rescue StandardError => e
+    critical "Failed to check multicast groups: #{e}"
   end
 end
