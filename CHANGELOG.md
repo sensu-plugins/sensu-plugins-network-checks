@@ -34,6 +34,9 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 ### Added
 - Updated asset build targets to support centos6
 
+### Added
+- metrics-interface-ssh.rb: new script to collect interface metrics remotely (@CoRfr)
+
 ## [4.0.0] - 2019-04-18
 ### Breaking Changes
 - Update minimum required ruby version to 2.3. Drop unsupported ruby versions.

@@ -39,6 +39,7 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.add_runtime_dependency 'net-ping',      '2.0.6'
   s.add_runtime_dependency 'whois',         '>= 4.0'
   s.add_runtime_dependency 'whois-parser',  '~> 1.2'
+  s.add_runtime_dependency 'net-ssh'
 
   s.add_development_dependency 'bundler',                   '~> 2.1'
   s.add_development_dependency 'github-markup',             '~> 4.0'
